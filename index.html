@@ -13,6 +13,23 @@
       margin: 0;
       padding: 0;
     }
+    
+    /* 添加文字淡入动画 */
+    @keyframes fadeInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* 应用文字淡入动画到 server-info 类 */
+    .server-info {
+      animation: fadeInFromLeft 1s ease forwards;
+    }
   </style>
 </head>
 <body class="height-full d-flex"
