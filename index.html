@@ -4,16 +4,24 @@
   <meta charset="utf-8">
   <title>Zcraft</title>
   <link rel="icon" href="site.png" type="image/png">
-  <link media="all" rel="stylesheet"
-    href="./primer.css" />
-  <link media="all" rel="stylesheet"
-    href="./site.css" />
-  <link media="all" rel="stylesheet"
-    href="./signup.css" />
+  <link media="all" rel="stylesheet" href="./primer.css" />
+  <link media="all" rel="stylesheet" href="./site.css" />
+  <link media="all" rel="stylesheet" href="./signup.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
+    }
+    
+    /* 页面布局 */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white; /* 设置文字颜色 */
+      text-align: center; /* 设置文字居中 */
     }
     
     /* 添加文字淡入动画 */
@@ -33,61 +41,32 @@
       animation: fadeInFromLeft 1s ease forwards;
     }
     
-    /* 添加逐个出现的效果 */
-    @keyframes fadeInSequentially {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+    /* 添加按钮样式 */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007bff; /* 设置按钮背景颜色 */
+      color: white; /* 设置按钮文字颜色 */
+      text-decoration: none; /* 移除下划线 */
+      border-radius: 5px; /* 圆角 */
+      transition: background-color 0.3s; /* 添加过渡效果 */
     }
     
-    /* 分别应用逐个出现的动画到不同的段落 */
-    .server-info h1 {
-      opacity: 0;
-      animation: fadeInSequentially 0.5s ease forwards;
-    }
-    .server-info p:nth-child(2) {
-      opacity: 0;
-      animation: fadeInSequentially 1s ease forwards;
-    }
-    .server-info p:nth-child(3) {
-      opacity: 0;
-      animation: fadeInSequentially 1.5s ease forwards;
-    }
-    .server-info p:nth-child(4) {
-      opacity: 0;
-      animation: fadeInSequentially 2s ease forwards;
-    }
-    .server-info p:nth-child(5) {
-      opacity: 0;
-      animation: fadeInSequentially 2.5s ease forwards;
+    .btn:hover {
+      background-color: #0056b3; /* 悬停时改变背景颜色 */
     }
   </style>
 </head>
-<body class="height-full d-flex"
-  style="word-wrap: break-word;">
-  <div class="js-warp-hide bg-gray-dark-mktg d-flex flex-auto flex-column overflow-hidden position-relative">
-    <div class="signup-space">
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
+<body>
+  <div class="container">
+    <h1>Zcraft</h1>
+    <div class="server-info">
+      <p>欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p>服务器IP地址：<code>play.simpfun.cn</code></p>
+      <p>端口号：<code>11008</code></p>
     </div>
-    <img src="./hero-glow.svg" alt="Glowing universe"
-      class="js-warp-hide position-absolute overflow-hidden events-none"
-      style="top: 50%; left: 50%; width: 200%; transform: translate(-50%, -50%);">
-    <!-- 添加服务器信息 -->
-    <div class="server-info" style="position: absolute; top: 10px; left: 10px; color: white;">
-      <h1 class="fadeInSequentially">欢迎来到我的服务器！</h1>
-      <p class="fadeInSequentially" style="animation-delay: 0.5s;">我非常高兴向你推荐我的服务器，你可以在这里尽情享受游戏乐趣。</p>
-      <p class="fadeInSequentially" style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-      <p class="fadeInSequentially" style="animation-delay: 1s;">端口号：<code>11008</code></p>
-      <p class="fadeInSequentially" style="animation-delay: 1.25s;">快来加入我们吧！</p>
-    </div>
+    <a href="#about" class="btn">关于我们</a>
   </div>
 </body>
 </html>
