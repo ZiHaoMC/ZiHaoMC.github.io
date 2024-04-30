@@ -24,21 +24,21 @@
       text-align: center; /* 设置文字居中 */
     }
     
-    /* 添加文字淡入动画 */
-    @keyframes fadeInFromLeft {
+    /* 添加文字从下向上出现的动画 */
+    @keyframes fadeInFromBottom {
       from {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateY(100%);
       }
       to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
       }
     }
     
-    /* 应用文字淡入动画到 server-info 类 */
+    /* 应用文字动画到 server-info 类 */
     .server-info {
-      animation: fadeInFromLeft 1s ease forwards;
+      animation: fadeInFromBottom 1s ease forwards;
     }
     
     /* 添加按钮样式 */
@@ -50,12 +50,12 @@
       color: white; /* 设置按钮文字颜色 */
       text-decoration: none; /* 移除下划线 */
       border-radius: 5px; /* 圆角 */
-      transition: background-color 0.3s; /* 添加过渡效果 */
     }
     
-    .btn:hover {
-      background-color: #0056b3; /* 悬停时改变背景颜色 */
-    }
+    /* 移除悬停时改变背景颜色效果 */
+    /* .btn:hover {
+      background-color: #0056b3; 
+    } */
   </style>
 </head>
 <body class="height-full d-flex" style="word-wrap: break-word; background: url('your-background-image.jpg') no-repeat center center fixed; background-size: cover;">
@@ -66,15 +66,3 @@
       <div class="signup-stars"></div>
       <div class="signup-stars"></div>
     </div>
-    <div class="container">
-      <h1>Zcraft</h1>
-      <div class="server-info">
-        <p>欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-        <p>服务器IP地址：<code>play.simpfun.cn</code></p>
-        <p>端口号：<code>11008</code></p>
-      </div>
-      <a href="#about" class="btn">关于我们</a>
-    </div>
-  </div>
-</body>
-</html>
