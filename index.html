@@ -75,14 +75,15 @@
       animation-delay: 1.25s; /* 延迟动画 */
     }
     
-    /* 底部黑色文本样式 */
+    /* 底部透明文本样式 */
     .bottom-text {
       position: absolute; /* 绝对定位 */
       bottom: 10px; /* 距离底部的距离 */
       left: 50%; /* 水平居中 */
       transform: translateX(-50%); /* 水平居中 */
-      color: black; /* 设置文本颜色为黑色 */
-      opacity: 0.5; /* 设置透明度 */
+      opacity: 0.1; /* 设置透明度为0.1 */
+      color: rgba(255, 255, 255, 0.1); /* 设置文本颜色为透明白色 */
+      user-select: none; /* 设置禁止选择 */
     }
   </style>
 </head>
@@ -104,9 +105,9 @@
         <a href="#about" class="btn">关于我们</a>
       </div>
     </div>
-    <!-- 底部黑色文本 -->
+    <!-- 底部透明文本 -->
     <div class="bottom-text">
-      Zcraft
+      Copyright © 2024 Zcraft All Right Reserved.
     </div>
   </div>
 </body>
