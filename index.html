@@ -24,19 +24,21 @@
       text-align: center; /* 设置文字居中 */
     }
     
-    /* 添加文字淡入动画 */
-    @keyframes fadeIn {
+    /* 添加文字从下向上出现的动画 */
+    @keyframes fadeInFromBottom {
       from {
         opacity: 0;
+        transform: translateY(100%);
       }
       to {
         opacity: 1;
+        transform: translateY(0);
       }
     }
     
-    /* 应用文字动画到标题 */
-    h1 {
-      animation: fadeIn 1s ease forwards;
+    /* 应用文字动画到 server-info 类 */
+    .server-info {
+      animation: fadeInFromBottom 1s ease forwards;
     }
     
     /* 添加按钮样式 */
@@ -51,7 +53,7 @@
     }
   </style>
 </head>
-<body class="height-full d-flex" style="word-wrap: break-word; background: url('your-background-image.jpg') no-repeat center center fixed; background-size: cover;">
+<body class="height-full d-flex" style="word-wrap: break-word;">
   <div class="js-warp-hide bg-gray-dark-mktg d-flex flex-auto flex-column overflow-hidden position-relative">
     <div class="signup-space">
       <div class="signup-stars"></div>
@@ -61,11 +63,11 @@
     </div>
     <!-- 添加服务器信息 -->
     <div class="container">
-      <h1 style="color: #87CEEB;">Zcraft</h1>
+      <h1 class="fadeInSequentially" style="color: #87CEEB;">Zcraft</h1>
       <div class="server-info">
         <p class="fadeInSequentially" style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p class="fadeInSequentially" style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-        <p class="fadeInSequentially" style="animation-delay: 5s;">端口号：<code>11008</code></p>
+        <p class="fadeInSequentially" style="animation-delay: 1s;">端口号：<code>11008</code></p>
         <a href="#about" class="btn fadeInSequentially" style="animation-delay: 1.25s;">关于我们</a>
       </div>
     </div>
