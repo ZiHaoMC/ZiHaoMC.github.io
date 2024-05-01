@@ -38,7 +38,8 @@
     
     /* 应用文字动画到 server-info 类 */
     .server-info p {
-      animation: fadeInFromBottom 1s ease forwards;
+      opacity: 0; /* 隐藏文字 */
+      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
     }
     
     /* 添加按钮样式 */
@@ -50,6 +51,9 @@
       color: white; /* 设置按钮文字颜色 */
       text-decoration: none; /* 移除下划线 */
       border-radius: 5px; /* 圆角 */
+      opacity: 0; /* 隐藏按钮 */
+      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
+      animation-delay: 1.25s; /* 延迟动画 */
     }
   </style>
 </head>
@@ -63,12 +67,12 @@
     </div>
     <!-- 添加服务器信息 -->
     <div class="container">
-      <h1 style="color: #87CEEB; opacity: 0; animation: fadeInFromBottom 1s ease forwards;">Zcraft</h1>
+      <h1 style="color: #87CEEB; opacity: 0;">Zcraft</h1>
       <div class="server-info">
         <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="#about" class="btn" style="opacity: 0; animation: fadeInFromBottom 1s ease forwards; animation-delay: 1.25s;">关于我们</a>
+        <a href="#about" class="btn">关于我们</a>
       </div>
     </div>
   </div>
