@@ -1,152 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" class="height-full" data-a11y-animated-images="system" data-a11y-link-underlines="true">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Zcraft</title>
-  <link rel="icon" href="site.png" type="image/png">
-  <link media="all" rel="stylesheet" href="./primer.css" />
-  <link media="all" rel="stylesheet" href="./site.css" />
-  <link media="all" rel="stylesheet" href="./signup.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    
-    /* 页面布局 */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      color: white; /* 设置文字颜色为白色 */
-      text-align: center; /* 设置文字居中 */
-      z-index: 1; /* 确保标题在背景上方显示 */
-      position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
-    }
-    
-    /* 添加文字从下向上出现的动画 */
-    @keyframes fadeInFromBottom {
-      from {
-        opacity: 0;
-        transform: translateY(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* 添加标题淡入效果 */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    
-    /* 应用标题动画到标题元素 */
-    h1 {
-      color: #007bff; /* 设置标题颜色为淡蓝色 */
-      opacity: 0; /* 隐藏标题 */
-      animation: fadeIn 1s ease forwards; /* 应用动画 */
-    }
-    
-    /* 应用文字动画到 server-info 类 */
-    .server-info p {
-      opacity: 0; /* 隐藏文字 */
-      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
-    }
-    
-    /* 添加按钮样式 */
-    .btn {
-      position: relative;
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 20px;
-      background-color: #007bff; /* 设置按钮背景颜色 */
-      color: white; /* 设置按钮文字颜色 */
-      text-decoration: none; /* 移除下划线 */
-      border-radius: 5px; /* 圆角 */
-      opacity: 0; /* 隐藏按钮 */
-      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
-      animation-delay: 1.25s; /* 延迟动画 */
-      overflow: hidden; /* 隐藏超出内容 */
-    }
-
-    /* 添加点击扩展效果 */
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      transform: scale(0);
-      animation: ripple-animation 0.6s linear;
-    }
-
-    @keyframes ripple-animation {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-    
-    /* 底部透明文本样式 */
-    .bottom-text {
-      position: absolute; /* 绝对定位 */
-      bottom: 10px; /* 距离底部的距离 */
-      left: 50%; /* 水平居中 */
-      transform: translateX(-50%); /* 水平居中 */
-      opacity: 0.1; /* 设置透明度为0.1 */
-      color: rgba(255, 255, 255, 0.1); /* 设置文本颜色为透明白色 */
-      user-select: none; /* 设置禁止选择 */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zcraft</title>
+    <link rel="icon" href="site.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="height-full d-flex" style="word-wrap: break-word;">
-  <div class="js-warp-hide bg-gray-dark-mktg d-flex flex-auto flex-column overflow-hidden position-relative">
-    <div class="signup-space">
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-      <div class="signup-stars"></div>
-    </div>
-    <!-- 添加服务器信息 -->
-    <div class="container">
-      <h1>Zcraft</h1> <!-- 添加标题 -->
-      <div class="server-info">
-        <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-        <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-        <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="about-ourselves" class="btn" onclick="createRipple(event)">关于我们</a>
-      </div>
-    </div>
-    <!-- 底部透明文本 -->
-    <div class="bottom-text">
-      Copyright © 2024 Zcraft All Right Reserved.
-    </div>
-  </div>
-  <script>
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple");
-
-      const ripple = button.getElementsByClassName("ripple")[0];
-
-      if (ripple) {
-        ripple.remove();
-      }
-
-      button.appendChild(circle);
-    }
-  </script>
+<body>
+    <header>
+        <h1>欢迎来到Zcraft服务器</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">主页</a></li>
+                <li><a href="#info">服务器信息</a></li>
+                <li><a href="#news">新闻</a></li>
+                <li><a href="#community">社区</a></li>
+                <li><a href="#shop">商店</a></li>
+                <li><a href="#support">支持</a></li>
+                <li><a href="#about">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home">
+            <h2>欢迎信息</h2>
+            <p>欢迎来到Zcraft，我们的服务器为你提供最佳的Minecraft体验！</p>
+        </section>
+        
+        <section id="info">
+            <h2>服务器信息</h2>
+            <p>IP地址：play.zcraft.com</p>
+            <p>端口：25565</p>
+            <p>版本：1.18</p>
+            <p>规则：遵守游戏规则，尊重其他玩家。</p>
+        </section>
+        
+        <section id="news">
+            <h2>新闻和更新</h2>
+            <p>最新公告和更新日志。</p>
+        </section>
+        
+        <section id="community">
+            <h2>社区</h2>
+            <p>加入我们的论坛和聊天，参与讨论和活动。</p>
+        </section>
+        
+        <section id="shop">
+            <h2>商店</h2>
+            <p>购买虚拟物品和特权，支持我们的服务器。</p>
+        </section>
+        
+        <section id="support">
+            <h2>支持与反馈</h2>
+            <p>查看常见问题，联系我们获取技术支持。</p>
+        </section>
+        
+        <section id="about">
+            <h2>关于我们</h2>
+            <p>了解更多关于Zcraft的信息和我们的团队。</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Copyright © 2024 Zcraft All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
