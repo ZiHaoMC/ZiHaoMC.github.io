@@ -38,6 +38,18 @@
       }
     }
     
+    /* 添加文字从上向下出现的动画 */
+    @keyframes fadeInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     /* 添加标题淡入效果 */
     @keyframes fadeIn {
       from {
@@ -103,6 +115,49 @@
       color: rgba(255, 255, 255, 0.1); /* 设置文本颜色为透明白色 */
       user-select: none; /* 设置禁止选择 */
     }
+
+    /* 菜单样式 */
+    .menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .menu-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+      display: block;
+    }
+
+    .menu-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .menu-content a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+      padding: 5px;
+    }
+
+    .menu-content a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-content.show {
+      display: block;
+    }
   </style>
 </head>
 <body class="height-full d-flex" style="word-wrap: break-word;">
@@ -113,6 +168,24 @@
       <div class="signup-stars"></div>
       <div class="signup-stars"></div>
     </div>
+    
+    <!-- 左上角的菜单 -->
+    <div class="menu">
+      <button class="menu-button" onclick="toggleMenu()">☰ 菜单</button>
+      <div class="menu-content" id="menu-content">
+        <a href="#login">注册与登录</a>
+        <a href="#server-info">服务器信息</a>
+        <a href="#news-updates">新闻和更新</a>
+        <a href="#community">社区</a>
+        <a href="#store">商店</a>
+        <a href="#leaderboard">排行榜</a>
+        <a href="#support-feedback">支持与反馈</a>
+        <a href="#downloads">下载资源</a>
+        <a href="#about">关于我们</a>
+        <a href="#multilingual">多语言支持</a>
+      </div>
+    </div>
+
     <!-- 添加服务器信息 -->
     <div class="container">
       <h1>Zcraft</h1> <!-- 添加标题 -->
@@ -120,15 +193,21 @@
         <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="#about-ourselves" class="btn" onclick="createRipple(event)">关于我们</a>
+        <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
     </div>
+    
     <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
     </div>
   </div>
   <script>
+    function toggleMenu() {
+      const menuContent = document.getElementById('menu-content');
+      menuContent.classList.toggle('show');
+    }
+
     function createRipple(event) {
       const button = event.currentTarget;
       const circle = document.createElement("span");
