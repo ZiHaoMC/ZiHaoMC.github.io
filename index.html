@@ -128,14 +128,14 @@
     }
 
     .menu-button {
-      background-color: #007bff;
-      color: white;
+      background-color: transparent;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
       cursor: pointer;
-      text-align: left;
-      display: block;
+    }
+
+    .menu-button img {
+      width: 40px;
+      height: 40px;
     }
 
     .menu-content {
@@ -160,7 +160,7 @@
     }
   </style>
 </head>
-<body class="height-full d-flex" style="word-wrap: break-word;">
+<body class="height-full d-flex" style="word-wrap: break-word;" onclick="hideMenu(event)">
   <div class="js-warp-hide bg-gray-dark-mktg d-flex flex-auto flex-column overflow-hidden position-relative">
     <div class="signup-space">
       <div class="signup-stars"></div>
@@ -171,7 +171,9 @@
     
     <!-- 左上角的菜单 -->
     <div class="menu">
-      <button class="menu-button" onclick="toggleMenu()">☰ 菜单</button>
+      <button class="menu-button" onclick="toggleMenu(event)">
+        <img src="cd.png" alt="菜单">
+      </button>
       <div class="menu-content" id="menu-content">
         <a href="#login">注册与登录</a>
         <a href="#server-info">服务器信息</a>
@@ -203,9 +205,17 @@
     </div>
   </div>
   <script>
-    function toggleMenu() {
+    function toggleMenu(event) {
+      event.stopPropagation(); // 阻止事件冒泡
       const menuContent = document.getElementById('menu-content');
       menuContent.classList.toggle('show');
+    }
+
+    function hideMenu(event) {
+      const menuContent = document.getElementById('menu-content');
+      if (!menuContent.contains(event.target)) {
+        menuContent.classList.remove('show');
+      }
     }
 
     function createRipple(event) {
