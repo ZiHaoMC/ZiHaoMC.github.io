@@ -141,6 +141,13 @@
     .menu-content {
       display: none;
       margin-top: 10px;
+      opacity: 0; /* 初始透明度为0 */
+      animation: fadeInFromTop 0.5s forwards; /* 从上到下淡入效果 */
+    }
+
+    .menu-content.show {
+      display: block;
+      opacity: 1; /* 显示时透明度为1 */
     }
 
     .menu-content a {
@@ -149,14 +156,51 @@
       display: block;
       margin: 5px 0;
       padding: 5px;
+      opacity: 0; /* 初始透明度为0 */
     }
 
-    .menu-content a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+    .menu-content.show a {
+      animation: fadeInFromBottom 0.5s forwards; /* 从下往上淡入效果 */
     }
 
-    .menu-content.show {
-      display: block;
+    .menu-content a:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .menu-content a:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .menu-content a:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .menu-content a:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .menu-content a:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .menu-content a:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .menu-content a:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    .menu-content a:nth-child(8) {
+      animation-delay: 0.8s;
+    }
+
+    .menu-content a:nth-child(9) {
+      animation-delay: 0.9s;
+    }
+
+    .menu-content a:nth-child(10) {
+      animation-delay: 1s;
     }
   </style>
 </head>
@@ -172,19 +216,19 @@
     <!-- 左上角的菜单 -->
     <div class="menu">
       <button class="menu-button" onclick="toggleMenu(event)">
-        <img src="cd.JPG" alt="菜单">
+        <img src="cd.png" alt="菜单">
       </button>
       <div class="menu-content" id="menu-content">
-        <a href="#login">注册与登录</a>
-        <a href="#server-info">服务器信息</a>
-        <a href="#news-updates">新闻和更新</a>
-        <a href="#community">社区</a>
-        <a href="#store">商店</a>
-        <a href="#leaderboard">排行榜</a>
-        <a href="#support-feedback">支持与反馈</a>
-        <a href="#downloads">下载资源</a>
-        <a href="#about">关于我们</a>
-        <a href="#multilingual">多语言支持</a>
+        <a href="login.html">注册与登录</a>
+        <a href="server-info.html">服务器信息</a>
+        <a href="news-updates.html">新闻和更新</a>
+        <a href="community.html">社区</a>
+        <a href="store.html">商店</a>
+        <a href="leaderboard.html">排行榜</a>
+        <a href="support-feedback.html">支持与反馈</a>
+        <a href="downloads.html">下载资源</a>
+        <a href="about.html">关于我们</a>
+        <a href="multilingual.html">多语言支持</a>
       </div>
     </div>
 
@@ -208,14 +252,35 @@
     function toggleMenu(event) {
       event.stopPropagation(); // 阻止事件冒泡
       const menuContent = document.getElementById('menu-content');
-      menuContent.classList.toggle('show');
+      if (menuContent.classList.contains('show')) {
+        menuContent.classList.remove('show');
+        closeMenuItems();
+      } else {
+        menuContent.classList.add('show');
+        openMenuItems();
+      }
     }
 
     function hideMenu(event) {
       const menuContent = document.getElementById('menu-content');
       if (!menuContent.contains(event.target)) {
         menuContent.classList.remove('show');
+        closeMenuItems();
       }
+    }
+
+    function openMenuItems() {
+      const menuItems = document.querySelectorAll('.menu-content a');
+      menuItems.forEach((item, index) => {
+        item.style.animation = `fadeInFromBottom 0.5s ${index * 0.1}s forwards`;
+      });
+    }
+
+    function closeMenuItems() {
+      const menuItems = document.querySelectorAll('.menu-content a');
+      menuItems.forEach((item, index) => {
+        item.style.animation = `fadeInFromTop 0.5s ${index * 0.1}s forwards reverse`;
+      });
     }
 
     function createRipple(event) {
