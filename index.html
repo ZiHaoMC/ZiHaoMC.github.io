@@ -203,7 +203,7 @@
     <!-- 右上角的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
-      <a href="server-info.html">服务器信息</a>
+      <a>服务器信息</a>
       <a href="news-updates.html">新闻和更新</a>
       <a href="community.html">社区</a>
       <a href="store.html">商店</a>
@@ -228,6 +228,9 @@
       </div>
     </div>
 
+    <!-- 添加更多内容以实现滚动 -->
+    <div style="height: 2000px;"></div> <!-- 占位符，用于增加页面长度 -->
+
     <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
@@ -243,13 +246,10 @@
       circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
       circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
       circle.classList.add("ripple");
-
       const ripple = button.getElementsByClassName("ripple")[0];
-
       if (ripple) {
         ripple.remove();
       }
-
       button.appendChild(circle);
     }
   </script>
