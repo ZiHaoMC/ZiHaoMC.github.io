@@ -12,7 +12,7 @@
       margin: 0;
       padding: 0;
     }
-    
+
     /* 页面布局 */
     .container {
       display: flex;
@@ -25,7 +25,7 @@
       z-index: 1; /* 确保标题在背景上方显示 */
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
     }
-    
+
     /* 添加文字从下向上出现的动画 */
     @keyframes fadeInFromBottom {
       from {
@@ -37,7 +37,7 @@
         transform: translateY(0);
       }
     }
-    
+
     /* 添加文字从上向下出现的动画 */
     @keyframes fadeInFromTop {
       from {
@@ -49,7 +49,7 @@
         transform: translateY(0);
       }
     }
-    
+
     /* 添加标题淡入效果 */
     @keyframes fadeIn {
       from {
@@ -59,20 +59,20 @@
         opacity: 1;
       }
     }
-    
+
     /* 应用标题动画到标题元素 */
     h1 {
       color: #007bff; /* 设置标题颜色为淡蓝色 */
       opacity: 0; /* 隐藏标题 */
       animation: fadeIn 1s ease forwards; /* 应用动画 */
     }
-    
+
     /* 应用文字动画到 server-info 类 */
     .server-info p {
       opacity: 0; /* 隐藏文字 */
       animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
     }
-    
+
     /* 添加按钮样式 */
     .btn {
       position: relative;
@@ -104,7 +104,7 @@
         opacity: 0;
       }
     }
-    
+
     /* 底部透明文本样式 */
     .bottom-text {
       position: absolute; /* 绝对定位 */
@@ -123,6 +123,7 @@
       right: 10px;
       display: flex;
       gap: 15px;
+      z-index: 10; /* 确保导航栏在顶部 */
     }
 
     .navbar a {
@@ -186,6 +187,7 @@
       border-radius: 5px;
       opacity: 0;
       animation: fadeInFromTop 1s ease forwards;
+      z-index: 10; /* 确保首页按钮在顶部 */
     }
   </style>
 </head>
@@ -197,11 +199,11 @@
       <div class="signup-stars"></div>
       <div class="signup-stars"></div>
     </div>
-    
+
     <!-- 右上角的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
-      <a href="https://api.imlazy.ink/mcapi/?name=Minecraft%20%E6%9C%8D%E5%8A%A1%E5%99%A8&host=play.simpfun.cn:11008&type=json&getmotd=%0a%0a&getbg=1.jpg">服务器信息</a>
+      <a href="server-info.html">服务器信息</a>
       <a href="news-updates.html">新闻和更新</a>
       <a href="community.html">社区</a>
       <a href="store.html">商店</a>
@@ -222,28 +224,11 @@
         <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="#" class="btn" onclick="createRipple(event)">关于我们</a>
+        <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
     </div>
-    
+
     <!-- 底部透明文本 -->
-    <div class="bottom-text">
-      Copyright © 2024 Zcraft All Right Reserved.
-    </div>
-  </div>
-  <script>
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple
-
-
-        <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
     </div>
