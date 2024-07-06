@@ -226,7 +226,7 @@
       </div>
     </div>
     
-    <!-- 底部透明文本 -->
+        <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
     </div>
@@ -244,5 +244,12 @@
 
       const ripple = button.getElementsByClassName("ripple")[0];
 
-      if (ripple)</body>
+      if (ripple) {
+        ripple.remove();
+      }
+
+      button.appendChild(circle);
+    }
+  </script>
+</body>
 </html>
