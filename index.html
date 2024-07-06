@@ -201,7 +201,7 @@
     <!-- 右上角的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
-      <a href="server-info.html">服务器信息</a>
+      <a href="https://api.imlazy.ink/mcapi/?name=Minecraft%20%E6%9C%8D%E5%8A%A1%E5%99%A8&host=play.simpfun.cn:11008&type=json&getmotd=%0a%0a&getbg=1.jpg">服务器信息</a>
       <a href="news-updates.html">新闻和更新</a>
       <a href="community.html">社区</a>
       <a href="store.html">商店</a>
@@ -222,14 +222,11 @@
         <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
+        <a href="https://api.imlazy.ink/mcapi/?name=Minecraft%20%E6%9C%8D%E5%8A%A1%E5%99%A8&host=play.simpfun.cn:11008&type=json&getmotd=%0a%0a&getbg=1.jpg" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
     </div>
-
-    <!-- 添加服务器状态图片 -->
-    <div id="server-status-image" style="margin-top: 20px;"></div>
     
-    <!-- 底部透明文本 -->
+        <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
     </div>
@@ -253,20 +250,6 @@
 
       button.appendChild(circle);
     }
-
-    // API URL
-    const apiUrl = "https://api.imlazy.ink/mcapi/?name=Minecraft服务器&host=hypixel.net";
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const serverStatusImage = document.getElementById("server-status-image");
-        const statusImageUrl = data.status === "online" ? "online-image.png" : "offline-image.png";
-        serverStatusImage.innerHTML = `<img src="${statusImageUrl}" alt="Server Status">`;
-      })
-      .catch(error => {
-        console.error('Error fetching server status:', error);
-      });
   </script>
 </body>
 </html>
