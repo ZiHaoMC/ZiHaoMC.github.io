@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <title>Zcraft</title>
   <link rel="icon" href="site.png" type="image/png">
+  <link media="all" rel="stylesheet" href="./primer.css" />
+  <link media="all" rel="stylesheet" href="./site.css" />
+  <link media="all" rel="stylesheet" href="./signup.css" />
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -221,6 +225,9 @@
         <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
     </div>
+
+    <!-- 添加服务器状态图片 -->
+    <div id="server-status-image" style="margin-top: 20px;"></div>
     
     <!-- 底部透明文本 -->
     <div class="bottom-text">
@@ -246,6 +253,6 @@
 
       button.appendChild(circle);
     }
-  </script>
-</body>
-</html>
+
+    // API URL
+    const apiUrl = "https://api.imlazy.ink/mcapi/?name=Minecraft服务器&host=hypix
