@@ -222,10 +222,27 @@
         <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
         <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a class="btn" onclick="createRipple(event)">关于我们</a>
+        <a href="#" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
     </div>
     
+    <!-- 底部透明文本 -->
+    <div class="bottom-text">
+      Copyright © 2024 Zcraft All Right Reserved.
+    </div>
+  </div>
+  <script>
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple
+
+
         <!-- 底部透明文本 -->
     <div class="bottom-text">
       Copyright © 2024 Zcraft All Right Reserved.
