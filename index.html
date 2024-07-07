@@ -16,6 +16,19 @@
       background-color: grey; /* 背景加载前的底色为灰色 */
       color: white; /* 默认文字颜色为白色 */
       transition: background-color 0.5s, color 0.5s; /* 添加过渡效果 */
+      position: relative;
+    }
+
+    /* 添加半透明黑色覆盖层 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+      pointer-events: none; /* 让覆盖层不影响点击事件 */
+      z-index: 0; /* 确保覆盖层在背景图片之上 */
     }
 
     /* 页面布局 */
@@ -51,6 +64,18 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    /* 添加文字从右向左出现的动画 */
+    @keyframes fadeInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
 
@@ -208,19 +233,30 @@
     /* 夜间模式按钮 */
     .night-mode-btn {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: #000;
+      top: 80px;
+      right: 10px;
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
       cursor: pointer;
+      opacity: 0;
+      animation: fadeInFromRight 1s ease forwards;
+      animation-delay: 1s; /* 延迟动画 */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .night-mode-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
   </style>
 </head>
 <body>
+    <!-- 添加半透明黑色覆盖层 -->
+    <div class="overlay"></div>
+
     <!-- 右上角的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
@@ -238,71 +274,65 @@
     <!-- 左上角的首页按钮 -->
     <a href="index.html" class="home-btn">首页</a>
 
+    <!-- 添加夜间模式按钮 -->
+    <button class="night-mode-btn" id="night-mode-btn">🌙</button>
+
     <!-- 添加服务器信息 -->
     <div class="container">
       <h1>Zcraft</h1> <!-- 添加标题 -->
       <div class="server-info">
-        <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-        <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-        <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-        <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
+        <p style="animation-delay: 0.1s;">服务器地址: play.zcraft.cn</p>
+        <p style="animation-delay: 0.2s;">支持版本: 1.8 - 1.18</p>
+        <p style="animation-delay: 0.3s;">在线玩家: 0/100</p>
+        <p style="animation-delay: 0.4s;">服务器状态: 在线</p>
       </div>
+      <a href="login.html" class="btn">立即加入</a>
     </div>
 
-    <!-- 添加更多文本内容以测试滚动效果 -->
-    <div class="additional-content">
-      <p>更多内容1...</p>
-      <p>更多内容2...</p>
-      <p>更多内容3...</p>
-      <p>更多内容4...</p>
-      <p>更多内容5...</p>
-      <!-- 继续添加更多文本 -->
-    </div>
-
-    <!-- 底部透明文本 -->
     <div class="bottom-text">
-      Copyright © 2024 Zcraft All Right Reserved.
+      Zcraft - The Ultimate Minecraft Experience
     </div>
 
-    <!-- 夜间模式按钮 -->
-    <div class="night-mode-btn" onclick="toggleNightMode()">🌙</div>
+    <script>
+      // 获取按钮元素
+      const nightModeBtn = document.getElementById('night-mode-btn');
+      const overlay = document.querySelector('.overlay');
+      let nightMode = false;
 
-  <script>
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple");
+      // 点击事件监听
+      nightModeBtn.addEventListener('click', () => {
+        nightMode = !nightMode;
+        if (nightMode) {
+          document.body.style.backgroundColor = 'black';
+          document.body.style.color = 'white';
+          overlay.style.background = 'rgba(0, 0, 0, 0.7)';
+          nightModeBtn.textContent = '🌞';
+        } else {
+          document.body.style.backgroundColor = 'grey';
+          document.body.style.color = 'white';
+          overlay.style.background = 'rgba(0, 0, 0, 0.5)';
+          nightModeBtn.textContent = '🌙';
+        }
+      });
 
-      const ripple = button.getElementsByClassName("ripple")[0];
+      // Ripple 效果
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          const x = e.clientX - e.target.offsetLeft;
+          const y = e.clientY - e.target.offsetTop;
 
-      if (ripple) {
-        ripple.remove();
-      }
+          const ripple = document.createElement('span');
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+          ripple.classList.add('ripple');
 
-      button.appendChild(circle);
-    }
+          this.appendChild(ripple);
 
-    // 随机选择背景图片
-    const dayImages = ['background.png', 'background2.png', 'background3.png'];
-    const nightImages = ['night1.png', 'night2.png', 'night3.png'];
-    const chosenImage = dayImages[Math.floor(Math.random() * dayImages.length)];
-    document.body.style.backgroundImage = `url('${chosenImage}')`;
-
-    // 切换夜间模式
-    function toggleNightMode() {
-      const body = document.body;
-      const isNight = body.classList.toggle('night-mode');
-      const images = isNight ? nightImages : dayImages;
-      const chosenNightImage = images[Math.floor(Math.random() * images.length)];
-      body.style.backgroundImage = `url('${chosenNightImage}')`;
-      body.style.backgroundColor = isNight ? 'black' : 'grey';
-      body.style.color = isNight ? 'white' : 'black';
-    }
-  </script>
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+    </script>
 </body>
 </html>
