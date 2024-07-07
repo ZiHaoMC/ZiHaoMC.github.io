@@ -12,12 +12,10 @@
 
     body {
       background-color: black; /* 设置背景颜色为黑色 */
-      min-height: 200vh; /* 增加页面高度以允许滚动 */
-      color: white; /* 设置文字颜色为白色 */
     }
 
     .bg-container {
-      position: absolute; /* 更改为 absolute 以允许页面滚动 */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -39,6 +37,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      color: white; /* 设置文字颜色为白色 */
       text-align: center; /* 设置文字居中 */
       z-index: 1; /* 确保标题在背景上方显示 */
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
@@ -137,7 +136,7 @@
 
     /* 右上角导航栏样式 */
     .navbar {
-      position: fixed; /* 固定导航栏 */
+      position: absolute;
       top: 10px;
       right: 10px;
       display: flex;
@@ -201,7 +200,7 @@
     }
 
     .home-btn {
-      position: fixed; /* 固定首页按钮 */
+      position: absolute;
       top: 10px;
       left: 10px;
       color: white;
@@ -221,7 +220,7 @@
 
     /* 夜间模式按钮样式 */
     .night-mode-btn {
-      position: fixed; /* 固定夜间模式按钮 */
+      position: absolute;
       top: 50px;
       right: 10px;
       color: white;
@@ -251,28 +250,21 @@
       }
     }
 
-    /* 添加图片在左上角 */
+    /* 左上角图片样式 */
     .left-top-image {
-      position: absolute; /* 绝对定位 */
-      top: 100%; /* 位于背景图片的下方 */
-      left: 0;
-      padding: 10px; /* 添加一些内边距 */
+      position: absolute;
+      top: 60px; /* 图片距离顶部的距离 */
+      left: 10px; /* 图片距离左边的距离 */
+      z-index: 2; /* 确保图片在文字上方 */
     }
 
-    .left-top-image img {
-      width: auto;
-      height: auto;
-      max-width: 100%; /* 限制最大宽度 */
-      max-height: 100%; /* 限制最大高度 */
-    }
-
-    /* 服务器状态文字样式 */
+    /* 服务器状态样式 */
     .server-status {
-      position: absolute; /* 绝对定位 */
-      top: 110%; /* 位于图片的下方 */
-      left: 0;
-      padding: 10px;
-      color: white; /* 设置文字颜色为白色 */
+      position: relative;
+      top: 70px; /* 状态文字距离图片的距离 */
+      left: 10px; /* 状态文字距离左边的距离 */
+      color: white;
+      font-size: 1.2em;
     }
   </style>
 </head>
@@ -283,14 +275,16 @@
 
   <!-- 右上角的导航栏 -->
   <div class="navbar">
-    <a href="server.html">服务器</a>
-    <a href="download.html">下载</a>
-    <a href="login.html">登录</a>
-    <a href="support.html">支持</a>
-    <a href="contact.html">联系我们</a>
-    <a href="rules.html">规则</a>
-    <a href="wiki.html">Wiki</a>
-    <a href="https://zihaomc.github.io">关于我们</a>
+    <a href="login.html">注册与登录</a>
+    <a href="server-info.html">服务器信息</a>
+    <a href="news-updates.html">新闻和更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="leaderboard.html">排行榜</a>
+    <a href="support-feedback.html">支持与反馈</a>
+    <a href="downloads.html">下载资源</a>
+    <a href="about.html">关于我们</a>
+    <a href="multilingual.html">多语言支持</a>
   </div>
 
   <!-- 左上角的首页按钮 -->
@@ -305,24 +299,20 @@
     <div class="server-info">
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
+      <p style="animation-delay: 1s;">端口号：<code>26097</code></p>
       <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
     </div>
   </div>
 
+  <!-- 左上角图片 -->
+  <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Image" class="left-top-image">
+
+  <!-- 服务器状态 -->
+  <div class="server-status">服务器状态：在线</div>
+
   <!-- 底部透明文本 -->
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
-  </div>
-
-  <!-- 左上角的图片 -->
-  <div class="left-top-image">
-    <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
-  </div>
-
-  <!-- 服务器状态 -->
-  <div class="server-status">
-    <p>服务器状态：在线</p>
   </div>
 
   <script>
