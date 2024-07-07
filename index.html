@@ -12,10 +12,11 @@
 
     body {
       background-color: gray; /* 默认背景色为灰色 */
+      min-height: 200vh; /* 增加页面高度以允许滚动 */
     }
 
     .bg-container {
-      position: fixed;
+      position: absolute; /* 更改为 absolute 以允许页面滚动 */
       top: 0;
       left: 0;
       width: 100%;
@@ -136,7 +137,7 @@
 
     /* 右上角导航栏样式 */
     .navbar {
-      position: absolute;
+      position: fixed; /* 固定导航栏 */
       top: 10px;
       right: 10px;
       display: flex;
@@ -200,7 +201,7 @@
     }
 
     .home-btn {
-      position: absolute;
+      position: fixed; /* 固定首页按钮 */
       top: 10px;
       left: 10px;
       color: white;
@@ -220,7 +221,7 @@
 
     /* 夜间模式按钮样式 */
     .night-mode-btn {
-      position: absolute;
+      position: fixed; /* 固定夜间模式按钮 */
       top: 50px;
       right: 10px;
       color: white;
@@ -249,6 +250,21 @@
         transform: translateX(0);
       }
     }
+
+    /* 添加图片在左上角 */
+    .left-top-image {
+      position: absolute; /* 绝对定位 */
+      top: 100%; /* 位于背景图片的下方 */
+      left: 0;
+      padding: 10px; /* 添加一些内边距 */
+    }
+
+    .left-top-image img {
+      width: auto;
+      height: auto;
+      max-width: 100%; /* 限制最大宽度 */
+      max-height: 100%; /* 限制最大高度 */
+    }
   </style>
 </head>
 <body>
@@ -263,11 +279,11 @@
     <a href="news-updates.html">新闻和更新</a>
     <a href="community.html">社区</a>
     <a href="store.html">商店</a>
-    <a href="leaderboard.html">排行榜</a>
-    <a href="support-feedback.html">支持与反馈</a>
-    <a href="downloads.html">下载资源</a>
-    <a href="about.html">关于我们</a>
-    <a href="multilingual.html">多语言支持</a>
+    <a href="support.html">支持</a>
+    <a href="contact.html">联系我们</a>
+    <a href="rules.html">规则</a>
+    <a href="wiki.html">Wiki</a>
+    <a href="https://zihaomc.github.io">关于我们</a>
   </div>
 
   <!-- 左上角的首页按钮 -->
@@ -290,6 +306,11 @@
   <!-- 底部透明文本 -->
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
+  </div>
+
+  <!-- 左上角的图片 -->
+  <div class="left-top-image">
+    <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
   </div>
 
   <script>
