@@ -250,21 +250,17 @@
       }
     }
 
-    /* 切换提示覆盖层样式 */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+    /* 切换提示文本样式 */
+    .switching-text {
+      position: absolute;
+      top: 50px;
+      right: 60px;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
-      z-index: 1000; /* 确保覆盖层在顶部 */
-      display: none; /* 初始状态为隐藏 */
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      padding: 5px 10px;
+      display: none;
+      z-index: 10;
     }
   </style>
 </head>
@@ -292,6 +288,7 @@
 
   <!-- 切换夜间模式按钮 -->
   <button id="night-mode-btn" class="night-mode-btn">🌙</button>
+  <div id="switching-text" class="switching-text">切换中...</div>
 
   <div class="container">
     <h1>Zcraft</h1>
@@ -307,9 +304,6 @@
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
   </div>
-
-  <!-- 切换提示覆盖层 -->
-  <div id="overlay" class="overlay">切换中...</div>
 
   <script>
     function createRipple(event) {
@@ -336,26 +330,26 @@
     const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
     const bgImage = document.getElementById('bg-image');
     const nightModeBtn = document.getElementById('night-mode-btn');
-    const overlay = document.getElementById('overlay');
+    const switchingText = document.getElementById('switching-text');
     let nightMode = localStorage.getItem('nightMode') === 'true';
 
     function setBackground() {
-      overlay.style.display = 'flex'; // 显示覆盖层
+      switchingText.style.display = 'block'; // 显示提示文本
       setTimeout(() => {
         const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
         bgImage.src = randomImage;
-        overlay.style.display = 'none'; // 隐藏覆盖层
+        switchingText.style.display = 'none'; // 隐藏提示文本
       }, 1000); // 模拟图片切换时间
     }
 
     nightModeBtn.addEventListener('click', () => {
       nightMode = !nightMode;
-      nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
+      nightModeBtn.textContent = nightMode ? '☀' : '🌙';
       localStorage.setItem('nightMode', nightMode);
       setBackground();
     });
 
-    nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
+    nightModeBtn.textContent = nightMode ? '☀' : '🌙';
     setBackground();
   </script>
 </body>
