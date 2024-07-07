@@ -253,7 +253,7 @@
 </head>
 <body>
   <div class="bg-container">
-    <img id="bg-image" src="" alt="Background">
+    <img id="bg-image" src="background-0.png" alt="Background">
   </div>
 
   <!-- 右上角的导航栏 -->
@@ -280,51 +280,59 @@
   <div class="container">
     <h1>Zcraft</h1> <!-- 添加标题 -->
     <div class="server-info">
-      <p style="animation-delay: 0.25s;">服务器状态：在线</p> <!-- 添加服务器状态 -->
-      <p style="animation-delay: 0.5s;">服务器维护：24/7</p> <!-- 添加服务器维护信息 -->
-      <p style="animation-delay: 0.75s;">服务器用户：123</p> <!-- 添加服务器用户信息 -->
-      <p style="animation-delay: 1s;">最近更新：添加全新的冒险模式！</p> <!-- 添加最近更新 -->
-      <a href="#" class="btn" id="play-now-btn" style="animation-delay: 1.5s;">马上开始玩</a> <!-- 添加立即开始游戏按钮 -->
+      <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
+      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
+      <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
     </div>
   </div>
 
-  <!-- 添加底部透明文本 -->
-  <div class="bottom-text">© 2024 Zcraft. All Rights Reserved.</div>
-
+  <!-- 底部透明文本 -->
+  <div class="bottom-text">
+    Copyright © 2024 Zcraft All Right Reserved.
+  </div>
+  
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const bgImage = document.getElementById("bg-image");
-      const nightModeBtn = document.getElementById("night-mode-btn");
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple");
 
-      function toggleNightMode() {
-        document.body.classList.toggle("night-mode");
-        const isNightMode = document.body.classList.contains("night-mode");
-        localStorage.setItem("nightMode", isNightMode ? "true" : "false");
-        updateNightMode(isNightMode);
+      const ripple = button.getElementsByClassName("ripple")[0];
+
+      if (ripple) {
+        ripple.remove();
       }
 
-      function updateNightMode(isNightMode) {
-        const randomIndex = Math.floor(Math.random() * 3); // 随机选择一个索引来确定白天还是黑夜的背景图像
-        if (isNightMode) {
-          bgImage.src = `night-background-${randomIndex}.png`;
-          nightModeBtn.textContent = "☀️";
-        } else {
-          bgImage.src = `background-${randomIndex}.png`;
-          nightModeBtn.textContent = "🌙";
-        }
-      }
+      button.appendChild(circle);
+    }
 
-      nightModeBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        toggleNightMode();
-      });
+    // 随机选择背景图片
+    const images = ['background-0.png', 'background-1.png', 'background-2.png'];
+    const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
+    const bgImage = document.getElementById('bg-image');
+    const nightModeBtn = document.getElementById('night-mode-btn');
+    let nightMode = localStorage.getItem('nightMode') === 'true';
 
-      const savedNightMode = localStorage.getItem("nightMode");
-      if (savedNightMode === "true") {
-        document.body.classList.add("night-mode");
-      }
-      updateNightMode(savedNightMode === "true");
+    function setBackground() {
+      const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
+      bgImage.src = randomImage;
+    }
+
+    nightModeBtn.addEventListener('click', () => {
+      nightMode = !nightMode;
+      nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
+      localStorage.setItem('nightMode', nightMode);
+      setBackground();
     });
+
+    nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
+    setBackground();
   </script>
 </body>
 </html>
