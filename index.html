@@ -12,13 +12,10 @@
 
     body {
       background-color: gray; /* 默认背景色为灰色 */
-      min-height: 200vh; /* 确保body有足够的高度 */
-      display: flex;
-      flex-direction: column;
     }
 
     .bg-container {
-      position: absolute; /* 修改为absolute */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -252,51 +249,32 @@
         transform: translateX(0);
       }
     }
-
-    /* 新增黑色底部区域 */
-    .footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      position: relative;
-    }
-
-    /* 背景图片引用链接样式 */
-    .image-credit {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      color: white;
-      text-decoration: none;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 5px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 1.2s;
-    }
-
   </style>
 </head>
 <body>
   <div class="bg-container">
     <img id="bg-image" src="background-0.png" alt="Background">
-    <!-- 添加背景图片引用链接 -->
-    <a href="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" class="image-credit">图片来源</a>
   </div>
 
-  <!-- 添加右上角导航栏 -->
+  <!-- 右上角的导航栏 -->
   <div class="navbar">
-    <a href="#" class="nav-link">首页</a>
-    <a href="#" class="nav-link">关于我们</a>
-    <a href="#" class="nav-link">联系</a>
-    <a href="#" class="nav-link">服务</a>
+    <a href="login.html">注册与登录</a>
+    <a href="server-info.html">服务器信息</a>
+    <a href="news-updates.html">新闻和更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="leaderboard.html">排行榜</a>
+    <a href="support-feedback.html">支持与反馈</a>
+    <a href="downloads.html">下载资源</a>
+    <a href="about.html">关于我们</a>
+    <a href="multilingual.html">多语言支持</a>
   </div>
 
-  <!-- 添加首页按钮 -->
-  <a href="#" class="home-btn">首页</a>
-  <a href="#" class="btn" id="night-mode-btn"> ☀ </a>
+  <!-- 左上角的首页按钮 -->
+  <a href="index.html" class="home-btn">首页</a>
+
+  <!-- 夜间模式按钮 -->
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
 
   <!-- 添加服务器信息 -->
   <div class="container">
@@ -312,11 +290,6 @@
   <!-- 底部透明文本 -->
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
-  </div>
-
-  <!-- 新增黑色底部区域 -->
-  <div class="footer">
-    版权所有 © 2024 Zcraft. 保留所有权利。
   </div>
 
   <script>
