@@ -249,19 +249,6 @@
         transform: translateX(0);
       }
     }
-
-    /* 切换提示文本样式 */
-    .switching-text {
-      position: absolute;
-      top: 50px;
-      right: 60px;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 5px;
-      padding: 5px 10px;
-      display: none;
-      z-index: 10;
-    }
   </style>
 </head>
 <body>
@@ -278,79 +265,74 @@
     <a href="store.html">商店</a>
     <a href="leaderboard.html">排行榜</a>
     <a href="support-feedback.html">支持与反馈</a>
-    <a href="rules-guidelines.html">规则和指南</a>
-    <a href="contact-us.html">联系我们</a>
-    <a href="faq.html">常见问题</a>
+    <a href="downloads.html">下载资源</a>
+    <a href="about.html">关于我们</a>
+    <a href="multilingual.html">多语言支持</a>
   </div>
 
-  <!-- 返回首页按钮 -->
-<a href="index.html" class="home-btn">返回首页</a>
+  <!-- 左上角的首页按钮 -->
+  <a href="index.html" class="home-btn">首页</a>
 
-<!-- 切换夜间模式按钮 -->
-<button id="night-mode-btn" class="night-mode-btn">🌙</button>
-<div id="switching-text" class="switching-text">切换中...</div>
+  <!-- 夜间模式按钮 -->
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
 
-<div class="container">
-  <h1>Zcraft</h1>
-  <div class="server-info">
-    <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-    <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-    <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-    <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
+  <!-- 添加服务器信息 -->
+  <div class="container">
+    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <div class="server-info">
+      <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
+      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
+      <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
+    </div>
   </div>
-</div>
 
-<!-- 底部透明文本 -->
-<div class="bottom-text">
-  Copyright © 2024 Zcraft All Right Reserved.
-</div>
+  <!-- 底部透明文本 -->
+  <div class="bottom-text">
+    Copyright © 2024 Zcraft All Right Reserved.
+  </div>
 
-<script>
-  function createRipple(event) {
-    const button = event.currentTarget;
-    const circle = document.createElement("span");
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-    circle.classList.add("ripple");
+  <script>
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple");
 
-    const ripple = button.getElementsByClassName("ripple")[0];
+      const ripple = button.getElementsByClassName("ripple")[0];
 
-    if (ripple) {
-      ripple.remove();
+      if (ripple) {
+        ripple.remove();
+      }
+
+      button.appendChild(circle);
     }
 
-    button.appendChild(circle);
-  }
+    // 随机选择背景图片
+    const images = ['background-0.png', 'background-1.png', 'background-2.png'];
+    const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
+    const bgImage = document.getElementById('bg-image');
+    const nightModeBtn = document.getElementById('night-mode-btn');
+    let nightMode = localStorage.getItem('nightMode') === 'true';
 
-  // 随机选择背景图片
-  const images = ['background-0.png', 'background-1.png', 'background-2.png'];
-  const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
-  const bgImage = document.getElementById('bg-image');
-  const nightModeBtn = document.getElementById('night-mode-btn');
-  const switchingText = document.getElementById('switching-text');
-  let nightMode = localStorage.getItem('nightMode') === 'true';
-
-  function setBackground() {
-    switchingText.style.display = 'block'; // 显示提示文本
-    setTimeout(() => {
+    function setBackground() {
       const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
       bgImage.src = randomImage;
-      switchingText.style.display = 'none'; // 隐藏提示文本
-    }, 1000); // 模拟图片切换时间
-  }
+    }
 
-  nightModeBtn.addEventListener('click', () => {
-    nightMode = !nightMode;
-    nightModeBtn.textContent = nightMode ? '☀' : '🌙';
-    localStorage.setItem('nightMode', nightMode);
+    nightModeBtn.addEventListener('click', () => {
+      nightMode = !nightMode;
+      nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
+      localStorage.setItem('nightMode', nightMode);
+      setBackground();
+    });
+
+    nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
     setBackground();
-  });
-
-  nightModeBtn.textContent = nightMode ? '☀' : '🌙';
-  setBackground();
   </script>
 </body>
 </html>
