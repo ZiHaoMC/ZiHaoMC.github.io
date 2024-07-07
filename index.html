@@ -244,22 +244,25 @@
     }
 
     .left-top-image {
-      position: absolute;
-      top: 0;
+      position: relative;
+      top: 20px;
       left: 0;
       width: 100vw;
-      max-height: 50vh;
-      padding: 10px;
+      height: auto;
+      max-height: 20vh;
+      object-fit: contain;
+      z-index: 2;
     }
 
     .server-info-text {
-      position: absolute;
-      top: 90%; /* 调整此值以控制文字位置 */
+      position: relative;
+      top: 30px; /* 调整此值以控制文字位置 */
       left: 50%;
       transform: translateX(-50%);
       color: white;
       font-size: 2em;
       text-align: center;
+      z-index: 3;
     }
 
   </style>
@@ -300,8 +303,11 @@
     </div>
   </div>
 
-  <!-- 左上角图片 -->
-  <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
+  <!-- 服务器信息文本 -->
+  <div class="server-info-text">服务器信息</div>
+
+  <!-- 左上角的图片 -->
+  <img id="left-top-image" class="left-top-image" src="https://imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
 
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
