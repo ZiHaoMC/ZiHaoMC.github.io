@@ -152,7 +152,9 @@
       top: 10px;
       right: 10px;
       display: flex;
-      gap: 15px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
       z-index: 10; /* 确保导航栏在顶部 */
     }
 
@@ -233,7 +235,7 @@
     /* 夜间模式按钮 */
     .night-mode-btn {
       position: absolute;
-      top: 80px;
+      top: 45px;
       right: 10px;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -269,13 +271,10 @@
       <a href="downloads.html">下载资源</a>
       <a href="about.html">关于我们</a>
       <a href="multilingual.html">多语言支持</a>
+      <button class="night-mode-btn" id="night-mode-btn"> 🌙 </button> <!-- 调整夜间模式按钮 -->
     </div>
 
-    <!-- 左上角的首页按钮 -->
     <a href="index.html" class="home-btn">首页</a>
-
-    <!-- 添加夜间模式按钮 -->
-    <button class="night-mode-btn" id="night-mode-btn">🌙</button>
 
     <!-- 添加服务器信息 -->
     <div class="container">
@@ -306,12 +305,12 @@
           document.body.style.backgroundColor = 'black';
           document.body.style.color = 'white';
           overlay.style.background = 'rgba(0, 0, 0, 0.7)';
-          nightModeBtn.textContent = '🌞';
+          nightModeBtn.textContent = ' ☀ ';
         } else {
-          document.body.style.backgroundColor = 'grey';
-          document.body.style.color = 'white';
+          document.body.style.backgroundColor = 'white';
+          document.body.style.color = 'black';
           overlay.style.background = 'rgba(0, 0, 0, 0.5)';
-          nightModeBtn.textContent = '🌙';
+          nightModeBtn.textContent = ' 🌙 ';
         }
       });
 
