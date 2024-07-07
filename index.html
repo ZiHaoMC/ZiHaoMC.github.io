@@ -11,14 +11,12 @@
     }
 
     body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden; /* 防止水平滚动条 */
+      background-color: gray; /* 默认背景色为灰色 */
+      min-height: 200vh; /* 增加页面高度以允许滚动 */
     }
 
     .bg-container {
-      position: fixed;
+      position: absolute; /* 更改为 absolute 以允许页面滚动 */
       top: 0;
       left: 0;
       width: 100%;
@@ -33,8 +31,109 @@
       filter: brightness(0.7); /* 调整亮度 */
     }
 
-    .navbar {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white; /* 设置文字颜色为白色 */
+      text-align: center; /* 设置文字居中 */
+      z-index: 1; /* 确保标题在背景上方显示 */
+      position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
+    }
+
+    /* 添加文字从下向上出现的动画 */
+    @keyframes fadeInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 添加文字从上向下出现的动画 */
+    @keyframes fadeInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 添加标题淡入效果 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 应用标题动画到标题元素 */
+    h1 {
+      color: white; /* 设置标题颜色为白色 */
+      font-size: 3em; /* 增大字体 */
+      opacity: 0; /* 隐藏标题 */
+      animation: fadeIn 1s ease forwards; /* 应用动画 */
+    }
+
+    /* 应用文字动画到 server-info 类 */
+    .server-info p {
+      opacity: 0; /* 隐藏文字 */
+      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
+    }
+
+    .btn {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007bff; /* 设置按钮背景颜色 */
+      color: white; /* 设置按钮文字颜色 */
+      text-decoration: none; /* 移除下划线 */
+      border-radius: 5px; /* 圆角 */
+      opacity: 0; /* 隐藏按钮 */
+      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
+      animation-delay: 1.25s; /* 延迟动画 */
+      overflow: hidden; /* 隐藏超出内容 */
+    }
+
+    /* 添加点击扩展效果 */
+    .ripple {
       position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+    }
+
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .bottom-text {
+      position: absolute; /* 绝对定位 */
+      bottom: 10px; /* 距离底部的距离 */
+      left: 50%; /* 水平居中 */
+      transform: translateX(-50%); /* 水平居中 */
+      opacity: 0.1; /* 设置透明度为0.1 */
+      color: rgba(255, 255, 255, 0.1); /* 设置文本颜色为透明白色 */
+      user-select: none; /* 设置禁止选择 */
+    }
+
+    .navbar {
+      position: fixed; /* 固定导航栏 */
       top: 10px;
       right: 10px;
       display: flex;
@@ -98,7 +197,7 @@
     }
 
     .home-btn {
-      position: absolute;
+      position: fixed; /* 固定首页按钮 */
       top: 10px;
       left: 10px;
       color: white;
@@ -117,7 +216,7 @@
     }
 
     .night-mode-btn {
-      position: absolute;
+      position: fixed; /* 固定夜间模式按钮 */
       top: 50px;
       right: 10px;
       color: white;
@@ -136,104 +235,6 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      z-index: 1; /* 确保标题在背景上方显示 */
-      position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
-    }
-
-    h1 {
-      color: white; /* 设置标题颜色为白色 */
-      font-size: 3em; /* 增大字体 */
-      opacity: 0; /* 隐藏标题 */
-      animation: fadeIn 1s ease forwards; /* 应用动画 */
-    }
-
-    .server-info p {
-      opacity: 0; /* 隐藏文字 */
-      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
-    }
-
-    .btn {
-      position: relative;
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 20px;
-      background-color: #007bff; /* 设置按钮背景颜色 */
-      color: white; /* 设置按钮文字颜色 */
-      text-decoration: none; /* 移除下划线 */
-      border-radius: 5px; /* 圆角 */
-      opacity: 0; /* 隐藏按钮 */
-      animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
-      animation-delay: 1.25s; /* 延迟动画 */
-      overflow: hidden; /* 隐藏超出内容 */
-    }
-
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      transform: scale(0);
-      animation: ripple-animation 0.6s linear;
-    }
-
-    @keyframes ripple-animation {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
-    .bottom-text {
-      position: absolute; /* 绝对定位 */
-      bottom: 10px; /* 距离底部的距离 */
-      left: 50%; /* 水平居中 */
-      transform: translateX(-50%); /* 水平居中 */
-      opacity: 0.1; /* 设置透明度为0.1 */
-      color: rgba(255, 255, 255, 0.1); /* 设置文本颜色为透明白色 */
-      user-select: none; /* 设置禁止选择 */
-    }
-
-    .extra-content {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 20px;
-      z-index: 1;
-    }
-
-    .extra-content img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    @keyframes fadeInFromBottom {
-      from {
-        opacity: 0;
-        transform: translateY(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInFromTop {
-      from {
-        opacity: 0;
-        transform: translateY(-100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes fadeInFromRight {
       from {
         opacity: 0;
@@ -245,19 +246,19 @@
       }
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    .bottom-image {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
     }
+
   </style>
 </head>
 <body>
   <div class="bg-container">
-    <img id="bg-image" src="night-background-0.png" alt="Background">
+    <img id="bg-image" src="background-0.png" alt="Background">
   </div>
 
   <!-- 右上角的导航栏 -->
@@ -278,7 +279,7 @@
   <a href="index.html" class="home-btn">首页</a>
 
   <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
+  <a href="#" class="night-mode-btn" id="night-mode-btn">☀</a>
 
   <!-- 添加服务器信息 -->
   <div class="container">
@@ -286,24 +287,18 @@
     <div class="server-info">
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
+      <p style="animation-delay: 1s;">端口号：<code>26097</code></p>
       <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
     </div>
-  </div>
-
-  <!-- 添加空白区域 -->
-  <div class="bottom-space"></div>
-
-  <!-- 左上角的图片 -->
-  <div class="extra-content">
-    <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
-    <p>服务器状态：在线</p>
   </div>
 
   <!-- 底部透明文本 -->
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
   </div>
+
+  <!-- 底部图片链接 -->
+  <img src="bottom-image.png" alt="Bottom Image" class="bottom-image">
 
   <script>
     function createRipple(event) {
@@ -339,13 +334,14 @@
 
     nightModeBtn.addEventListener('click', () => {
       nightMode = !nightMode;
-      nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
+      nightModeBtn.textContent = nightMode ? '🌙' : '☀';
       localStorage.setItem('nightMode', nightMode);
       setBackground();
     });
 
-    nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
+    nightModeBtn.textContent = nightMode ? '🌙' : '☀';
     setBackground();
   </script>
+
 </body>
 </html>
