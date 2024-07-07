@@ -11,8 +11,9 @@
     }
 
     body {
-      background-color: gray; /* 默认背景色为灰色 */
+      background-color: black; /* 设置背景颜色为黑色 */
       min-height: 200vh; /* 增加页面高度以允许滚动 */
+      color: white; /* 设置文字颜色为白色 */
     }
 
     .bg-container {
@@ -38,7 +39,6 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      color: white; /* 设置文字颜色为白色 */
       text-align: center; /* 设置文字居中 */
       z-index: 1; /* 确保标题在背景上方显示 */
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
@@ -265,6 +265,15 @@
       max-width: 100%; /* 限制最大宽度 */
       max-height: 100%; /* 限制最大高度 */
     }
+
+    /* 服务器状态文字样式 */
+    .server-status {
+      position: absolute; /* 绝对定位 */
+      top: 110%; /* 位于图片的下方 */
+      left: 0;
+      padding: 10px;
+      color: white; /* 设置文字颜色为白色 */
+    }
   </style>
 </head>
 <body>
@@ -274,11 +283,9 @@
 
   <!-- 右上角的导航栏 -->
   <div class="navbar">
-    <a href="login.html">注册与登录</a>
-    <a href="server-info.html">服务器信息</a>
-    <a href="news-updates.html">新闻和更新</a>
-    <a href="community.html">社区</a>
-    <a href="store.html">商店</a>
+    <a href="server.html">服务器</a>
+    <a href="download.html">下载</a>
+    <a href="login.html">登录</a>
     <a href="support.html">支持</a>
     <a href="contact.html">联系我们</a>
     <a href="rules.html">规则</a>
@@ -311,6 +318,11 @@
   <!-- 左上角的图片 -->
   <div class="left-top-image">
     <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
+  </div>
+
+  <!-- 服务器状态 -->
+  <div class="server-status">
+    <p>服务器状态：在线</p>
   </div>
 
   <script>
