@@ -249,6 +249,23 @@
         transform: translateX(0);
       }
     }
+
+    /* 切换提示覆盖层样式 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      z-index: 1000; /* 确保覆盖层在顶部 */
+      display: none; /* 初始状态为隐藏 */
+    }
   </style>
 </head>
 <body>
@@ -265,20 +282,19 @@
     <a href="store.html">商店</a>
     <a href="leaderboard.html">排行榜</a>
     <a href="support-feedback.html">支持与反馈</a>
-    <a href="downloads.html">下载资源</a>
-    <a href="about.html">关于我们</a>
-    <a href="multilingual.html">多语言支持</a>
+    <a href="rules-guidelines.html">规则和指南</a>
+    <a href="contact-us.html">联系我们</a>
+    <a href="faq.html">常见问题</a>
   </div>
 
-  <!-- 左上角的首页按钮 -->
-  <a href="index.html" class="home-btn">首页</a>
+  <!-- 返回首页按钮 -->
+  <a href="index.html" class="home-btn">返回首页</a>
 
-  <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
+  <!-- 切换夜间模式按钮 -->
+  <button id="night-mode-btn" class="night-mode-btn">🌙</button>
 
-  <!-- 添加服务器信息 -->
   <div class="container">
-    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <h1>Zcraft</h1>
     <div class="server-info">
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
@@ -291,6 +307,9 @@
   <div class="bottom-text">
     Copyright © 2024 Zcraft All Right Reserved.
   </div>
+
+  <!-- 切换提示覆盖层 -->
+  <div id="overlay" class="overlay">切换中...</div>
 
   <script>
     function createRipple(event) {
@@ -317,21 +336,26 @@
     const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
     const bgImage = document.getElementById('bg-image');
     const nightModeBtn = document.getElementById('night-mode-btn');
+    const overlay = document.getElementById('overlay');
     let nightMode = localStorage.getItem('nightMode') === 'true';
 
     function setBackground() {
-      const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
-      bgImage.src = randomImage;
+      overlay.style.display = 'flex'; // 显示覆盖层
+      setTimeout(() => {
+        const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
+        bgImage.src = randomImage;
+        overlay.style.display = 'none'; // 隐藏覆盖层
+      }, 1000); // 模拟图片切换时间
     }
 
     nightModeBtn.addEventListener('click', () => {
       nightMode = !nightMode;
-      nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
+      nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
       localStorage.setItem('nightMode', nightMode);
       setBackground();
     });
 
-    nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
+    nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
     setBackground();
   </script>
 </body>
