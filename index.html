@@ -12,7 +12,7 @@
 
     body {
       background-size: cover; /* 背景图片覆盖整个页面 */
-      background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
+      background-repeat: no-repeat; /* 背景图片不重复 */
     }
 
     /* 页面布局 */
@@ -204,7 +204,6 @@
   </style>
 </head>
 <body>
-
     <!-- 右上角的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
@@ -231,6 +230,16 @@
         <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
         <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
       </div>
+    </div>
+
+    <!-- 添加更多文本内容以测试滚动效果 -->
+    <div class="additional-content">
+      <p>更多内容1...</p>
+      <p>更多内容2...</p>
+      <p>更多内容3...</p>
+      <p>更多内容4...</p>
+      <p>更多内容5...</p>
+      <!-- 继续添加更多文本 -->
     </div>
 
     <!-- 底部透明文本 -->
@@ -260,8 +269,8 @@
 
     // 随机选择背景图片
     const images = ['background.png', 'background2.png', 'background3.png'];
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-    document.body.style.backgroundImage = `url(${randomImage})`;
+    const chosenImage = images[Math.floor(Math.random() * images.length)];
+    document.body.style.backgroundImage = `url('${chosenImage}')`;
   </script>
 </body>
 </html>
