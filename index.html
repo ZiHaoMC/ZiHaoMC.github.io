@@ -11,12 +11,11 @@
     }
 
     body {
-      background-color: gray; /* 默认背景色为灰色 */
-      min-height: 200vh; /* 增加页面高度以允许滚动 */
+      background-color: black; /* 设置背景颜色为黑色 */
     }
 
     .bg-container {
-      position: absolute; /* 更改为 absolute 以允许页面滚动 */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -31,7 +30,6 @@
       filter: brightness(0.7); /* 调整亮度 */
     }
 
-    /* 页面布局 */
     .container {
       display: flex;
       flex-direction: column;
@@ -44,7 +42,15 @@
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
     }
 
-    /* 添加文字从下向上出现的动画 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
     @keyframes fadeInFromBottom {
       from {
         opacity: 0;
@@ -56,7 +62,6 @@
       }
     }
 
-    /* 添加文字从上向下出现的动画 */
     @keyframes fadeInFromTop {
       from {
         opacity: 0;
@@ -68,17 +73,17 @@
       }
     }
 
-    /* 添加标题淡入效果 */
-    @keyframes fadeIn {
+    @keyframes fadeInFromRight {
       from {
         opacity: 0;
+        transform: translateX(100%);
       }
       to {
         opacity: 1;
+        transform: translateX(0);
       }
     }
 
-    /* 应用标题动画到标题元素 */
     h1 {
       color: white; /* 设置标题颜色为白色 */
       font-size: 3em; /* 增大字体 */
@@ -86,13 +91,11 @@
       animation: fadeIn 1s ease forwards; /* 应用动画 */
     }
 
-    /* 应用文字动画到 server-info 类 */
     .server-info p {
       opacity: 0; /* 隐藏文字 */
       animation: fadeInFromBottom 1s ease forwards; /* 应用动画 */
     }
 
-    /* 添加按钮样式 */
     .btn {
       position: relative;
       display: inline-block;
@@ -108,7 +111,6 @@
       overflow: hidden; /* 隐藏超出内容 */
     }
 
-    /* 添加点击扩展效果 */
     .ripple {
       position: absolute;
       border-radius: 50%;
@@ -124,7 +126,6 @@
       }
     }
 
-    /* 底部透明文本样式 */
     .bottom-text {
       position: absolute; /* 绝对定位 */
       bottom: 10px; /* 距离底部的距离 */
@@ -135,9 +136,8 @@
       user-select: none; /* 设置禁止选择 */
     }
 
-    /* 右上角导航栏样式 */
     .navbar {
-      position: fixed; /* 固定导航栏 */
+      position: absolute;
       top: 10px;
       right: 10px;
       display: flex;
@@ -201,7 +201,7 @@
     }
 
     .home-btn {
-      position: fixed; /* 固定首页按钮 */
+      position: absolute;
       top: 10px;
       left: 10px;
       color: white;
@@ -219,9 +219,8 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* 夜间模式按钮样式 */
     .night-mode-btn {
-      position: fixed; /* 固定夜间模式按钮 */
+      position: absolute;
       top: 50px;
       right: 10px;
       color: white;
@@ -240,52 +239,13 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    @keyframes fadeInFromRight {
-      from {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    /* 添加图片在左上角 */
-    .left-top-image {
-      position: absolute; /* 绝对定位 */
-      top: 100%; /* 位于背景图片的下方 */
-      left: 0;
-      padding: 10px; /* 添加一些内边距 */
-    }
-
-    .left-top-image img {
-      width: auto;
-      height: auto;
-      max-width: 100%; /* 限制最大宽度 */
-      max-height: 100%; /* 限制最大高度 */
-    }
-
-    /* 底部的模糊背景图片 */
     .bottom-image {
-      position: absolute;
-      bottom: 10px; /* 距离底部一定距离 */
-      left: 50%;
-      width: calc(100% - 20px); /* 拉长到左右碰底 */
-      height: auto; /* 保持高度不变 */
-      transform: translateX(-50%); /* 水平居中 */
-      filter: blur(5px); /* 添加模糊效果 */
-    }
-
-    /* 底部的额外信息 */
-    .bottom-info {
-      position: absolute;
-      bottom: 50px; /* 距离底部一定距离 */
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2em; /* 比平常大一点的字体 */
-      color: white; /* 设置颜色为白色 */
-      text-align: center; /* 居中对齐 */
+      width: 100%; /* 图片宽度设置为100% */
+      height: auto; /* 高度自动 */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
     }
   </style>
 </head>
@@ -294,96 +254,58 @@
     <img id="bg-image" src="background-0.png" alt="Background">
   </div>
 
-  <!-- 右上角的导航栏 -->
   <div class="navbar">
     <a href="login.html">注册与登录</a>
     <a href="server-info.html">服务器信息</a>
     <a href="news-updates.html">新闻和更新</a>
     <a href="community.html">社区</a>
     <a href="store.html">商店</a>
-    <a href="support.html">支持</a>
-    <a href="contact.html">联系我们</a>
-    <a href="rules.html">规则</a>
-    <a href="wiki.html">Wiki</a>
-    <a href="https://zihaomc.github.io">关于我们</a>
+    <a href="leaderboard.html">排行榜</a>
+    <a href="support-feedback.html">支持与反馈</a>
+    <a href="downloads.html">下载资源</a>
+    <a href="about.html">关于我们</a>
+    <a href="multilingual.html">多语言</a>
   </div>
 
-  <!-- 左上角的首页按钮 -->
   <a href="index.html" class="home-btn">首页</a>
 
-  <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
-
-  <!-- 添加服务器信息 -->
   <div class="container">
-    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <h1>Zcraft</h1>
     <div class="server-info">
-      <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-      <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
-      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
-      <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
+      <p>欢迎来到Zcraft服务器！</p>
+      <a href="#" class="btn">立即加入</a>
     </div>
   </div>
 
-  <!-- 底部透明文本 -->
   <div class="bottom-text">
-    Copyright © 2024 Zcraft All Right Reserved.
+    <p>版权所有 © 2024 Zcraft</p>
   </div>
 
-  <!-- 左上角的图片 -->
-  <div class="left-top-image">
-    <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
-  </div>
-
-  <!-- 底部的模糊背景图片 -->
-  <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Bottom Image" class="bottom-image">
-
-  <!-- 底部的额外信息 -->
-  <div class="bottom-info">
-    服务器信息:
-  </div>
+  <img src="bottom-image.png" alt="Bottom Image" class="bottom-image">
 
   <script>
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple");
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function (e) {
+        let ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${e.clientX - e.target.offsetLeft}px`;
+        ripple.style.top = `${e.clientY - e.target.offsetTop}px`;
+        this.appendChild(ripple);
 
-      const ripple = button.getElementsByClassName("ripple")[0];
-
-      if (ripple) {
-        ripple.remove();
-      }
-
-      button.appendChild(circle);
-    }
-
-    // 随机选择背景图片
-    const images = ['background-0.png', 'background-1.png', 'background-2.png'];
-    const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
-    const bgImage = document.getElementById('bg-image');
-    const nightModeBtn = document.getElementById('night-mode-btn');
-    let nightMode = localStorage.getItem('nightMode') === 'true';
-
-    function setBackground() {
-      const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
-      bgImage.src = randomImage;
-    }
-
-    nightModeBtn.addEventListener('click', () => {
-      nightMode = !nightMode;
-      nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
-      localStorage.setItem('nightMode', nightMode);
-      setBackground();
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
     });
 
-    nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
-    setBackground();
+    const bgImages = ["background-0.png", "background-1.png", "background-2.png"];
+    let currentImageIndex = 0;
+    const bgImageElement = document.getElementById("bg-image");
+
+    setInterval(() => {
+      currentImageIndex = (currentImageIndex + 1) % bgImages.length;
+      bgImageElement.src = bgImages[currentImageIndex];
+    }, 5000);
   </script>
 </body>
 </html>
