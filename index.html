@@ -14,6 +14,8 @@
       background-size: cover; /* 背景图片覆盖整个页面 */
       background-repeat: no-repeat; /* 背景图片不重复 */
       background-color: grey; /* 背景加载前的底色为灰色 */
+      color: white; /* 默认文字颜色为白色 */
+      transition: background-color 0.5s, color 0.5s; /* 添加过渡效果 */
     }
 
     /* 页面布局 */
@@ -23,7 +25,6 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      color: white; /* 设置文字颜色为白色 */
       text-align: center; /* 设置文字居中 */
       z-index: 1; /* 确保标题在背景上方显示 */
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
@@ -65,7 +66,7 @@
 
     /* 应用标题动画到标题元素 */
     h1 {
-      color: #007bff; /* 设置标题颜色为淡蓝色 */
+      color: white; /* 设置标题颜色为白色 */
       opacity: 0; /* 隐藏标题 */
       font-size: 4em; /* 增大标题字体 */
       animation: fadeIn 1s ease forwards; /* 应用动画 */
@@ -203,6 +204,20 @@
     .home-btn:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
+
+    /* 夜间模式按钮 */
+    .night-mode-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -249,6 +264,9 @@
       Copyright © 2024 Zcraft All Right Reserved.
     </div>
 
+    <!-- 夜间模式按钮 -->
+    <div class="night-mode-btn" onclick="toggleNightMode()">夜间模式</div>
+
   <script>
     function createRipple(event) {
       const button = event.currentTarget;
@@ -270,9 +288,21 @@
     }
 
     // 随机选择背景图片
-    const images = ['background.png', 'background2.png', 'background3.png'];
-    const chosenImage = images[Math.floor(Math.random() * images.length)];
+    const dayImages = ['background.png', 'background2.png', 'background3.png'];
+    const nightImages = ['night1.png', 'night2.png', 'night3.png'];
+    const chosenImage = dayImages[Math.floor(Math.random() * dayImages.length)];
     document.body.style.backgroundImage = `url('${chosenImage}')`;
+
+    // 切换夜间模式
+    function toggleNightMode() {
+      const body = document.body;
+      const isNight = body.classList.toggle('night-mode');
+      const images = isNight ? nightImages : dayImages;
+      const chosenNightImage = images[Math.floor(Math.random() * images.length)];
+      body.style.backgroundImage = `url('${chosenNightImage}')`;
+      body.style.backgroundColor = isNight ? 'black' : 'grey';
+      body.style.color = isNight ? 'white' : 'black';
+    }
   </script>
 </body>
 </html>
