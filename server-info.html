@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en" class="height-full" data-a11y-animated-images="system" data-a11y-link-underlines="true">
 <head>
   <meta charset="utf-8">
-  <title>服务器信息</title>
+  <title>Zcraft</title>
   <link rel="icon" href="site.png" type="image/png">
   <style>
     * {
@@ -12,9 +11,27 @@
     }
 
     body {
-      background-color: black; /* 设置背景颜色为黑色 */
-      color: white; /* 设置文字颜色为白色 */
-      font-family: Arial, sans-serif;
+      background-color: gray; /* 默认背景色为灰色 */
+      min-height: 200vh; /* 增加页面高度以允许滚动 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* 确保背景在所有内容后面 */
+    }
+
+    .bg-container img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      filter: brightness(0.7); /* 调整亮度 */
     }
 
     .container {
@@ -23,60 +40,265 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      text-align: center; /* 设置文字居中 */
-      padding: 20px; /* 添加内边距 */
+      color: white;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    @keyframes fadeInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: white;
+      font-size: 3em;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
     }
 
     .server-info p {
-      margin: 10px 0; /* 添加间距 */
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
     }
 
-    h1, h2, h3 {
-      margin: 20px 0; /* 添加标题间距 */
-    }
-
-    /* 右下角图片样式 */
-    .right-bottom-image {
-      position: fixed; /* 固定定位 */
-      bottom: 10px; /* 距离底部的距离 */
-      right: 10px; /* 距离右边的距离 */
-      z-index: 2; /* 确保图片在文字上方 */
-      width: 150px; /* 可以根据需要调整图片大小 */
-    }
-
-    /* 按钮样式 */
     .btn {
+      position: relative;
       display: inline-block;
       padding: 10px 20px;
       margin-top: 20px;
-      background-color: #007bff; /* 设置按钮背景颜色 */
-      color: white; /* 设置按钮文字颜色 */
-      text-decoration: none; /* 移除下划线 */
-      border-radius: 5px; /* 圆角 */
-      transition: background-color 0.3s; /* 添加背景颜色过渡效果 */
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 1.25s;
+      overflow: hidden;
     }
 
-    .btn:hover {
-      background-color: #0056b3; /* 设置按钮悬停时的背景颜色 */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
     }
+
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .bottom-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.1;
+      color: rgba(255, 255, 255, 0.1);
+      user-select: none;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeInFromTop 1s ease forwards;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar a:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .navbar a:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .navbar a:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .navbar a:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .navbar a:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .navbar a:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .navbar a:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    .navbar a:nth-child(8) {
+      animation-delay: 0.8s;
+    }
+
+    .navbar a:nth-child(9) {
+      animation-delay: 0.9s;
+    }
+
+    .navbar a:nth-child(10) {
+      animation-delay: 1s;
+    }
+
+    .home-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeInFromTop 1s ease forwards;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+
+    .home-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .night-mode-btn {
+      position: fixed;
+      top: 50px;
+      right: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      opacity: 0;
+      animation: fadeInFromRight 1s ease forwards;
+      animation-delay: 1.1s;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+
+    .night-mode-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes fadeInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .left-top-image {
+      position: relative;
+      width: 100%; /* 拉长到页面的宽度 */
+      height: auto;
+      max-height: 20vh; /* 高度不变 */
+      object-fit: contain;
+      z-index: 2;
+      margin-top: 20px; /* 确保图片在服务器信息下方 */
+    }
+
+    .server-info-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      z-index: 3;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>服务器信息</h1> <!-- 添加标题 -->
-    <div class="server-info">
-      <p>欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
-      <p>服务器IP地址：<code>play.simpfun.cn</code></p>
-      <p>端口号：<code>26097</code></p>
-      <p>服务器配置：4核 12GB 运存</p>
-      <h2>RPG 冒险类游戏</h2>
-      <h3>深渊回声</h3>
-      <p>在 "深渊回声" 中，你将探索未知的地下城，面对各种挑战和敌人，解开隐藏的秘密，收集珍贵的战利品。</p>
-      <a href="https://zihaomc.github.io" class="btn">关于我们</a>
-    </div>
+  <div class="bg-container">
+    <img id="bg-image" src="background-day-0.png" alt="Background">
   </div>
 
-  <!-- 右下角图片 -->
-  <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Image" class="right-bottom-image">
+  <!-- 右上角的导航栏 -->
+  <div class="navbar">
+    <a href="login.html">注册与登录</a>
+    <a href="server-info.html">服务器信息</a>
+    <a href="news-updates.html">新闻和更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="support.html">支持</a>
+    <a href="contact.html">联系我们</a>
+    <a href="rules.html">规则</a>
+    <a href="wiki.html">Wiki</a>
+    <a href="https://zihaomc.github.io">关于我们</a>
+  </div>
+
+  <!-- 左上角的首页按钮 -->
+  <a href="index.html" class="home-btn">首页</a>
+
+  <!-- 夜间模式按钮 -->
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
+
+  <!-- 添加服务器信息 -->
+  <div class="container">
+    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <div class="server-info">
+      <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
+    </div>
+    <img src="your-image-url.jpg" class="left-top-image" alt="Top Image">
+  </div>
 </body>
 </html>
