@@ -11,24 +11,23 @@
     }
 
     body {
-      background-size: cover; /* 背景图片覆盖整个页面 */
-      background-repeat: no-repeat; /* 背景图片不重复 */
-      background-color: grey; /* 背景加载前的底色为灰色 */
-      color: white; /* 默认文字颜色为白色 */
-      transition: background-color 0.5s, color 0.5s; /* 添加过渡效果 */
-      position: relative;
+      background-color: gray; /* 默认背景色为灰色 */
     }
 
-    /* 添加半透明黑色覆盖层 */
-    .overlay {
+    .bg-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
-      pointer-events: none; /* 让覆盖层不影响点击事件 */
-      z-index: 0; /* 确保覆盖层在背景图片之上 */
+      z-index: -1; /* 确保背景在所有内容后面 */
+    }
+
+    .bg-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7); /* 调整亮度 */
     }
 
     /* 页面布局 */
@@ -38,6 +37,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      color: white; /* 设置文字颜色为白色 */
       text-align: center; /* 设置文字居中 */
       z-index: 1; /* 确保标题在背景上方显示 */
       position: relative; /* 相对定位，为了下面绝对定位元素的参照 */
@@ -67,18 +67,6 @@
       }
     }
 
-    /* 添加文字从右向左出现的动画 */
-    @keyframes fadeInFromRight {
-      from {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
     /* 添加标题淡入效果 */
     @keyframes fadeIn {
       from {
@@ -92,8 +80,8 @@
     /* 应用标题动画到标题元素 */
     h1 {
       color: white; /* 设置标题颜色为白色 */
+      font-size: 3em; /* 增大字体 */
       opacity: 0; /* 隐藏标题 */
-      font-size: 4em; /* 增大标题字体 */
       animation: fadeIn 1s ease forwards; /* 应用动画 */
     }
 
@@ -146,13 +134,13 @@
       user-select: none; /* 设置禁止选择 */
     }
 
-    /* 顶部导航栏样式 */
+    /* 右上角导航栏样式 */
     .navbar {
       position: absolute;
       top: 10px;
       right: 10px;
       display: flex;
-      gap: 5px;
+      gap: 15px;
       z-index: 10; /* 确保导航栏在顶部 */
     }
 
@@ -230,106 +218,118 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* 夜间模式按钮 */
+    /* 夜间模式按钮样式 */
     .night-mode-btn {
       position: absolute;
       top: 50px;
       right: 10px;
+      color: white;
+      text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 5px;
-      color: white;
-      text-decoration: none;
-      cursor: pointer;
       opacity: 0;
       animation: fadeInFromRight 1s ease forwards;
-      animation-delay: 1s; /* 延迟动画 */
-      transition: background-color 0.3s, color 0.3s;
+      animation-delay: 1.1s;
+      transition: background-color 0.3s;
     }
 
     .night-mode-btn:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
 
+    @keyframes fadeInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 <body>
-    <!-- 添加半透明黑色覆盖层 -->
-    <div class="overlay"></div>
+  <div class="bg-container">
+    <img id="bg-image" src="background.png" alt="Background">
+  </div>
 
-    <!-- 顶部的导航栏 -->
-    <div class="navbar">
-      <a href="login.html">注册与登录</a>
-      <a href="server-info.html">服务器信息</a>
-      <a href="news-updates.html">新闻和更新</a>
-      <a href="community.html">社区</a>
-      <a href="store.html">商店</a>
-      <a href="leaderboard.html">排行榜</a>
-      <a href="support-feedback.html">支持与反馈</a>
-      <a href="downloads.html">下载资源</a>
-      <a href="about.html">关于我们</a>
-      <a href="multilingual.html">多语言支持</a>
+  <!-- 右上角的导航栏 -->
+  <div class="navbar">
+    <a href="login.html">注册与登录</a>
+    <a href="server-info.html">服务器信息</a>
+    <a href="news-updates.html">新闻和更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="leaderboard.html">排行榜</a>
+    <a href="support-feedback.html">支持与反馈</a>
+    <a href="downloads.html">下载资源</a>
+    <a href="about.html">关于我们</a>
+    <a href="multilingual.html">多语言支持</a>
+  </div>
+
+  <!-- 左上角的首页按钮 -->
+  <a href="index.html" class="home-btn">首页</a>
+
+  <!-- 夜间模式按钮 -->
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> 🌙 </a>
+
+  <!-- 添加服务器信息 -->
+  <div class="container">
+    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <div class="server-info">
+      <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
+      <p style="animation-delay: 1s;">端口号：<code>11008</code></p>
+      <a href="https://zihaomc.github.io" class="btn" onclick="createRipple(event)">关于我们</a>
     </div>
+  </div>
 
-    <a href="index.html" class="home-btn">首页</a>
-    <button class="night-mode-btn" id="night-mode-btn"> 🌙 </button>
+  <!-- 底部透明文本 -->
+  <div class="bottom-text">
+    Copyright © 2024 Zcraft All Right Reserved.
+  </div>
+  
+  <script>
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple");
 
-    <!-- 添加服务器信息 -->
-    <div class="container">
-      <h1>Zcraft</h1> <!-- 添加标题 -->
-      <div class="server-info">
-        <p style="animation-delay: 0.1s;">服务器地址: play.zcraft.cn</p>
-        <p style="animation-delay: 0.2s;">支持版本: 1.8 - 1.18</p>
-        <p style="animation-delay: 0.3s;">在线玩家: 0/100</p>
-        <p style="animation-delay: 0.4s;">服务器状态: 在线</p>
-      </div>
-      <a href="login.html" class="btn">立即加入</a>
-    </div>
+      const ripple = button.getElementsByClassName("ripple")[0];
 
-    <div class="bottom-text">
-      Zcraft - The Ultimate Minecraft Experience
-    </div>
+      if (ripple) {
+        ripple.remove();
+      }
 
-    <script>
-      // 获取按钮元素
-      const nightModeBtn = document.getElementById('night-mode-btn');
-      const overlay = document.querySelector('.overlay');
-      let nightMode = false;
+      button.appendChild(circle);
+    }
 
-      // 点击事件监听
-      nightModeBtn.addEventListener('click', () => {
-        nightMode = !nightMode;
-        if (nightMode) {
-          document.body.style.backgroundColor = 'black';
-          document.body.style.color = 'white';
-          overlay.style.background = 'rgba(0, 0, 0, 0.7)';
-          nightModeBtn.textContent = ' ☀ ';
-        } else {
-          document.body.style.backgroundColor = 'white';
-          document.body.style.color = 'black';
-          overlay.style.background = 'rgba(0, 0, 0, 0.5)';
-          nightModeBtn.textContent = ' 🌙 ';
-        }
-      });
+    // 随机选择背景图片
+    const images = ['background.png', 'background2.png', 'background3.png'];
+    const nightImages = ['night1.png', 'night2.png', 'night3.png'];
+    const bgImage = document.getElementById('bg-image');
+    const nightModeBtn = document.getElementById('night-mode-btn');
+    let nightMode = false;
 
-      // Ripple 效果
-      document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-          const x = e.clientX - e.target.offsetLeft;
-          const y = e.clientY - e.target.offsetTop;
+    function setBackground() {
+      const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
+      bgImage.src = randomImage;
+    }
 
-          const ripple = document.createElement('span');
-          ripple.style.left = `${x}px`;
-          ripple.style.top = `${y}px`;
-          ripple.classList.add('ripple');
+    nightModeBtn.addEventListener('click', () => {
+      nightMode = !nightMode;
+      nightModeBtn.textContent = nightMode ? ' ☀ ' : ' 🌙 ';
+      setBackground();
+    });
 
-          this.appendChild(ripple);
-
-          setTimeout(() => {
-            ripple.remove();
-          }, 600);
-        });
-      });
-    </script>
+    setBackground();
+  </script>
 </body>
 </html>
