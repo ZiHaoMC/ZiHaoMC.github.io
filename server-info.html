@@ -1,1 +1,82 @@
 
+<!DOCTYPE html>
+<html lang="en" class="height-full" data-a11y-animated-images="system" data-a11y-link-underlines="true">
+<head>
+  <meta charset="utf-8">
+  <title>服务器信息</title>
+  <link rel="icon" href="site.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: black; /* 设置背景颜色为黑色 */
+      color: white; /* 设置文字颜色为白色 */
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center; /* 设置文字居中 */
+      padding: 20px; /* 添加内边距 */
+    }
+
+    .server-info p {
+      margin: 10px 0; /* 添加间距 */
+    }
+
+    h1, h2, h3 {
+      margin: 20px 0; /* 添加标题间距 */
+    }
+
+    /* 右下角图片样式 */
+    .right-bottom-image {
+      position: fixed; /* 固定定位 */
+      bottom: 10px; /* 距离底部的距离 */
+      right: 10px; /* 距离右边的距离 */
+      z-index: 2; /* 确保图片在文字上方 */
+      width: 150px; /* 可以根据需要调整图片大小 */
+    }
+
+    /* 按钮样式 */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007bff; /* 设置按钮背景颜色 */
+      color: white; /* 设置按钮文字颜色 */
+      text-decoration: none; /* 移除下划线 */
+      border-radius: 5px; /* 圆角 */
+      transition: background-color 0.3s; /* 添加背景颜色过渡效果 */
+    }
+
+    .btn:hover {
+      background-color: #0056b3; /* 设置按钮悬停时的背景颜色 */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>服务器信息</h1> <!-- 添加标题 -->
+    <div class="server-info">
+      <p>欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
+      <p>服务器IP地址：<code>play.simpfun.cn</code></p>
+      <p>端口号：<code>26097</code></p>
+      <p>服务器配置：4核 12GB 运存</p>
+      <h2>RPG 冒险类游戏</h2>
+      <h3>深渊回声</h3>
+      <p>在 "深渊回声" 中，你将探索未知的地下城，面对各种挑战和敌人，解开隐藏的秘密，收集珍贵的战利品。</p>
+      <a href="https://zihaomc.github.io" class="btn">关于我们</a>
+    </div>
+  </div>
+
+  <!-- 右下角图片 -->
+  <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Image" class="right-bottom-image">
+</body>
+</html>
