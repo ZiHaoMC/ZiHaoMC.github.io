@@ -146,14 +146,12 @@
       user-select: none; /* 设置禁止选择 */
     }
 
-    /* 右上角导航栏样式 */
+    /* 顶部导航栏样式 */
     .navbar {
       position: absolute;
       top: 10px;
       right: 10px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
       gap: 5px;
       z-index: 10; /* 确保导航栏在顶部 */
     }
@@ -235,7 +233,7 @@
     /* 夜间模式按钮 */
     .night-mode-btn {
       position: absolute;
-      top: 45px;
+      top: 50px;
       right: 10px;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -259,7 +257,7 @@
     <!-- 添加半透明黑色覆盖层 -->
     <div class="overlay"></div>
 
-    <!-- 右上角的导航栏 -->
+    <!-- 顶部的导航栏 -->
     <div class="navbar">
       <a href="login.html">注册与登录</a>
       <a href="server-info.html">服务器信息</a>
@@ -271,10 +269,10 @@
       <a href="downloads.html">下载资源</a>
       <a href="about.html">关于我们</a>
       <a href="multilingual.html">多语言支持</a>
-      <button class="night-mode-btn" id="night-mode-btn"> 🌙 </button> <!-- 调整夜间模式按钮 -->
     </div>
 
     <a href="index.html" class="home-btn">首页</a>
+    <button class="night-mode-btn" id="night-mode-btn"> 🌙 </button>
 
     <!-- 添加服务器信息 -->
     <div class="container">
