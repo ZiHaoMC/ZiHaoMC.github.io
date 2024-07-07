@@ -11,7 +11,6 @@
     }
 
     body {
-      background-image: url('background.png'); /* 设置背景图片 */
       background-size: cover; /* 背景图片覆盖整个页面 */
       background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
     }
@@ -258,6 +257,11 @@
 
       button.appendChild(circle);
     }
+
+    // 随机选择背景图片
+    const images = ['background1.png', 'background2.png', 'background3.png'];
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    document.body.style.backgroundImage = `url(${randomImage})`;
   </script>
 </body>
 </html>
