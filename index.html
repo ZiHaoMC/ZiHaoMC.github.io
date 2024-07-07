@@ -263,14 +263,6 @@
       text-align: center;
     }
 
-    .bottom-image {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-    }
-
   </style>
 </head>
 <body>
@@ -311,28 +303,29 @@
 
   <!-- 底部透明文本 -->
   <div class="bottom-text">
-    Copyright © 2024 Zcraft All Right Reserved.
+    Copyright © 2024 Zcraft. All rights reserved.
   </div>
 
-  <!-- 左上角的图片 -->
-  <div class="server-info-text">
-    服务器信息
-  </div>
-  <div class="left-top-image">
-    <img src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=11008" alt="Server Image">
-  </div>
-
-  <!-- 底部图片 -->
-  <div class="bottom-image">
-    <img src="background-0.png" alt="Bottom Image">
-  </div>
+  <!-- 左上角图片 -->
+  <img class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
 
   <script>
+    const nightModeBtn = document.getElementById('night-mode-btn');
+    nightModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
+      if (document.body.classList.contains('night-mode')) {
+        nightModeBtn.textContent = '🌙';
+      } else {
+        nightModeBtn.textContent = '☀';
+      }
+    });
+
     function createRipple(event) {
       const button = event.currentTarget;
       const circle = document.createElement("span");
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
+
       circle.style.width = circle.style.height = `${diameter}px`;
       circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
       circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
@@ -346,28 +339,6 @@
 
       button.appendChild(circle);
     }
-
-    // 随机选择背景图片
-    const images = ['background-0.png', 'background-1.png', 'background-2.png'];
-    const nightImages = ['night-background-0.png', 'night-background-1.png', 'night-background-2.png'];
-    const bgImage = document.getElementById('bg-image');
-    const nightModeBtn = document.getElementById('night-mode-btn');
-    let nightMode = localStorage.getItem('nightMode') === 'true';
-
-    function setBackground() {
-      const randomImage = nightMode ? nightImages[Math.floor(Math.random() * nightImages.length)] : images[Math.floor(Math.random() * images.length)];
-      bgImage.src = randomImage;
-    }
-
-    nightModeBtn.addEventListener('click', () => {
-      nightMode = !nightMode;
-      nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
-      localStorage.setItem('nightMode', nightMode);
-      setBackground();
-    });
-
-    nightModeBtn.textContent = nightMode ? ' 🌙 ' : ' ☀ ';
-    setBackground();
   </script>
 </body>
 </html>
