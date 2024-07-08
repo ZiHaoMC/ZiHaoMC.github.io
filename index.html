@@ -23,13 +23,13 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh; /* 设置背景图片高度 */
+      height: 100%;
       z-index: -1; /* 确保背景在所有内容后面 */
     }
 
     .bg-container img {
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       filter: brightness(0.7); /* 调整亮度 */
     }
@@ -255,8 +255,8 @@
     }
 
     .server-info-text {
-      position: absolute;
-      top: calc(100vh + 20px); /* 100vh + 20px 移动到背景图片下方 */
+      position: relative;
+      top: 80vh; /* 调整此值以控制文字位置 */
       left: 50%;
       transform: translateX(-50%);
       color: white;
@@ -304,7 +304,9 @@
   </div>
 
   <!-- 服务器信息文本 -->
-  <div class="server-info-text">服务器信息</div>
+  <div class="server-info-text">
+    欢迎加入我们的服务器！体验最棒的游戏时光！
+  </div>
 
   <!-- 左上角的图片 -->
   <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
