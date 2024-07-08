@@ -243,18 +243,7 @@
       }
     }
 
-    .left-top-image {
-      position: relative;
-      top: 40px; /* 调整此值以向下移动图片 */
-      left: 0;
-      width: 100vw; /* 宽度铺满整个视口 */
-      height: auto;
-      max-height: 20vh;
-      object-fit: contain;
-      z-index: 2;
-    }
-
-    .server-info-text, .news-updates-text {
+    .server-info-text, .news-updates-text { /*[news-updates-text]是新闻与更新*/
       position: absolute;
       top: 106vh; /* 固定到背景图片下方 */
       left: 50%;
@@ -269,7 +258,7 @@
     }
 
     .news-updates-text {
-      top: 130vh; /* 放置在服务器信息下方 */
+      top: 131vh; /* 放置在服务器信息下方 */
     }
   </style>
 </head>
@@ -282,7 +271,7 @@
   <div class="navbar">
     <a href="login.html">注册与登录</a>
     <a href="#server-info-text" id="server-info-link">服务器信息</a>
-    <a href="news-updates.html">新闻和更新</a>
+    <a href="news-updates.html">新闻与更新</a>
     <a href="community.html">社区</a>
     <a href="store.html">商店</a>
     <a href="support.html">支持</a>
