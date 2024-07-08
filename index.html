@@ -11,7 +11,7 @@
     }
 
     body {
-      background-color: #181818; /* 设置背景色为 #181818 */
+      background-color: #181818; /* 默认背景色为#181818 */
       min-height: 200vh; /* 增加页面高度以允许滚动 */
       display: flex;
       flex-direction: column;
@@ -243,7 +243,7 @@
       }
     }
 
-    .left-top-image {
+    .server-info-image {
       position: relative;
       top: 40px; /* 调整此值以向下移动图片 */
       left: 0;
@@ -254,22 +254,22 @@
       z-index: 2;
     }
 
-    .server-info-text, .news-updates-text {
+    .server-info-text {
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -100%);
       color: white;
       font-size: 2em;
       text-align: center;
       z-index: 3;
     }
 
-    .server-info-text {
+    #server-info-section {
       top: 106vh; /* 固定到背景图片下方 */
     }
 
-    .news-updates-text {
-      top: 130vh; /* 固定到服务器信息文本下方 */
+    #news-updates-section {
+      top: 126vh; /* 固定到服务器信息图片下方 */
     }
 
   </style>
@@ -283,7 +283,7 @@
   <div class="navbar">
     <a href="login.html">注册与登录</a>
     <a href="#" id="server-info-link">服务器信息</a>
-    <a href="news-updates.html">新闻和更新</a>
+    <a href="news-updates.html">新闻与更新</a>
     <a href="community.html">社区</a>
     <a href="store.html">商店</a>
     <a href="support.html">支持</a>
@@ -306,34 +306,68 @@
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn:26097</code></p>
       <p style="animation-delay: 1s;">版本：<code>1.20.1</code></p>
+      <a href="https://zcraft.us.kg/login.html/" class="btn" onclick="createRipple(event)">加入我们</a>
     </div>
   </div>
 
   <!-- 服务器信息文本 -->
-  <div class="server-info-text">服务器信息</div>
+  <div id="server-info-section" class="server-info-text">服务器信息</div>
+
+  <!-- 服务器信息图片 -->
+  <img id="server-info-image" class="server-info-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
 
   <!-- 新闻与更新文本 -->
-  <div class="news-updates-text">新闻与更新</div>
+  <div id="news-updates-section" class="server-info-text" style="top: 126vh;">新闻与更新</div>
 
   <script>
-    document.getElementById("server-info-link").addEventListener("click", function (event) {
-      event.preventDefault();
-      const serverInfoElement = document.querySelector(".server-info-text");
-      if (serverInfoElement) {
-        serverInfoElement.scrollIntoView({ behavior: "smooth" });
+    const nightModeBtn = document.getElementById('night-mode-btn');
+    const bgImage = document.getElementById('bg-image');
+    const leftTopImage = document.getElementById('left-top-image');
+
+    const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
+    const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
+
+    let isNightMode = false;
+    let currentImageIndex = 0;
+
+    nightModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
+      isNightMode = !isNightMode;
+
+      if (isNightMode) {
+        nightModeBtn.textContent = '🌙';
+        bgImage.src = nightImages[currentImageIndex];
+      } else {
+        nightModeBtn.textContent = '☀';
+        bgImage.src = dayImages[currentImageIndex];
       }
+
+      currentImageIndex = (currentImageIndex + 1) % dayImages.length;
     });
 
-    document.getElementById("night-mode-btn").addEventListener("click", function (event) {
-      event.preventDefault();
-      const bgImage = document.getElementById("bg-image");
-      const currentSrc = bgImage.getAttribute("src");
-      const newSrc = currentSrc === "background-day-0.png" ? "background-night.png" : "background-day-0.png";
-      bgImage.setAttribute("src", newSrc);
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
 
-      // 切换按钮文本
-      const currentText = this.textContent.trim();
-      this.textContent = currentText === "☀" ? "🌙" : "☀";
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple");
+
+      const ripple = button.getElementsByClassName("ripple")[0];
+
+      if (ripple) {
+        ripple.remove();
+      }
+
+      button.appendChild(circle);
+    }
+
+    document.getElementById('server-info-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
