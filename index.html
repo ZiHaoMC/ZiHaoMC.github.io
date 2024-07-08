@@ -250,7 +250,7 @@
       width: 100vw; /* 宽度铺满整个视口 */
       height: auto;
       max-height: 20vh;
-      object-fit: cover; /* 改变为 cover 以确保图片覆盖整个宽度 */
+      object-fit: contain;
       z-index: 2;
     }
 
@@ -299,39 +299,61 @@
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
       <p style="animation-delay: 1s;">版本：<code>1.20.1</code></p>
+      <a href="https://www.mcbbs.net/" class="btn" onclick="createRipple(event)">前往论坛</a>
     </div>
-    <a href="join.html" class="btn">立即加入</a>
   </div>
 
-  <img src="left-top-image.png" alt="Left Top Image" class="left-top-image">
+  <!-- 服务器信息文本 -->
+  <div class="server-info-text">服务器信息</div>
 
-  <div class="server-info-text">
-    Zcraft服务器 | 欢迎加入
-  </div>
-
-  <div class="bottom-text">
-    © 2024 Zcraft. All rights reserved.
-  </div>
+  <!-- 左上角的图片 -->
+  <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
 
   <script>
-    // Ripple effect script
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
-        ripple.style.left = `${e.clientX - btn.getBoundingClientRect().left}px`;
-        ripple.style.top = `${e.clientY - btn.getBoundingClientRect().top}px`;
-        btn.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Night mode toggle script
     const nightModeBtn = document.getElementById('night-mode-btn');
+    const bgImage = document.getElementById('bg-image');
+    const leftTopImage = document.getElementById('left-top-image');
+
+    const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
+    const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
+
+    let isNightMode = false;
+    let currentImageIndex = 0;
+
     nightModeBtn.addEventListener('click', () => {
       document.body.classList.toggle('night-mode');
-      nightModeBtn.textContent = document.body.classList.contains('night-mode') ? '☀' : '🌙';
+      isNightMode = !isNightMode;
+
+      if (isNightMode) {
+        nightModeBtn.textContent = '🌙';
+        bgImage.src = nightImages[currentImageIndex];
+      } else {
+        nightModeBtn.textContent = '☀';
+        bgImage.src = dayImages[currentImageIndex];
+      }
+
+      currentImageIndex = (currentImageIndex + 1) % dayImages.length;
     });
+
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+      circle.classList.add("ripple");
+
+      const ripple = button.getElementsByClassName("ripple")[0];
+
+      if (ripple) {
+        ripple.remove();
+      }
+
+      button.appendChild(circle);
+    }
   </script>
 </body>
 </html>
