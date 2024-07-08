@@ -250,7 +250,7 @@
       width: 100vw; /* 宽度铺满整个视口 */
       height: auto;
       max-height: 20vh;
-      object-fit: contain;
+      object-fit: cover; /* 改变为 cover 以确保图片覆盖整个宽度 */
       z-index: 2;
     }
 
@@ -263,8 +263,19 @@
       font-size: 2em;
       text-align: center;
       z-index: 3;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 1s;
     }
 
+    .left-bottom-image {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 150px; /* 调整图片宽度 */
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 1.5s;
+    }
   </style>
 </head>
 <body>
@@ -308,6 +319,13 @@
 
   <!-- 左上角的图片 -->
   <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
+
+  <!-- 左下角的图片 -->
+  <img src="left-bottom-image.png" alt="Left Bottom Image" class="left-bottom-image">
+
+  <div class="bottom-text">
+    © 2024 Zcraft. All rights reserved.
+  </div>
 
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
