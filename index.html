@@ -303,8 +303,15 @@
     </div>
   </div>
 
-  <!-- 服务器信息文本 -->
-  <div id="server-info-section" class="server-info-text">服务器信息</div>
+  <!-- 服务器信息标题 -->
+  <div class="server-info-text">
+    服务器信息
+  </div>
+
+  <!-- 新闻与更新标题 -->
+  <div class="news-updates-text">
+    新闻与更新
+  </div>
 
   <!-- 左上角的图片 -->
   <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
@@ -354,11 +361,6 @@
 
       button.appendChild(circle);
     }
-
-    document.getElementById('server-info-link').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
-    });
   </script>
 </body>
 </html>
