@@ -256,7 +256,7 @@
 
     .server-info-text {
       position: absolute;
-      top: calc(100vh + 20px); /* 100vh + 20px 移动到背景图片下方 */
+      top: 110vh; /* 固定到背景图片下方 */
       left: 50%;
       transform: translateX(-50%);
       color: white;
@@ -299,54 +299,41 @@
       <p style="animation-delay: 0.5s;">欢迎来到Zcraft服务器！在这里，你可以尽情享受游戏乐趣。</p>
       <p style="animation-delay: 0.75s;">服务器IP地址：<code>play.simpfun.cn</code></p>
       <p style="animation-delay: 1s;">版本：<code>1.20.1</code></p>
-      <a href="https://www.mcbbs.net/" class="btn" onclick="createRipple(event)">了解更多</a>
+      <a href="https://www.mcbbs.net/" class="btn" onclick="createRipple(event)">前往论坛</a>
     </div>
   </div>
 
-  <!-- 服务器信息文本 -->
-  <div class="server-info-text">服务器信息</div>
-
-  <!-- 左上角的图片 -->
-  <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
+  <!-- 在背景图片下方显示服务器信息 -->
+  <div class="server-info-text">
+    欢迎加入我们的服务器！体验最棒的游戏时光！
+  </div>
 
   <script>
-    const nightModeBtn = document.getElementById('night-mode-btn');
-    const bgImage = document.getElementById('bg-image');
-    const leftTopImage = document.getElementById('left-top-image');
+    document.getElementById('night-mode-btn').addEventListener('click', function() {
+      var bgImage = document.getElementById('bg-image');
+      var currentSrc = bgImage.getAttribute('src');
 
-    const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
-    const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
-
-    let isNightMode = false;
-    let currentImageIndex = 0;
-
-    nightModeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('night-mode');
-      isNightMode = !isNightMode;
-
-      if (isNightMode) {
-        nightModeBtn.textContent = '🌙';
-        bgImage.src = nightImages[currentImageIndex];
+      if (currentSrc === 'background-day-0.png') {
+        bgImage.setAttribute('src', 'background-night-0.png');
+        this.textContent = '🌙';
       } else {
-        nightModeBtn.textContent = '☀';
-        bgImage.src = dayImages[currentImageIndex];
+        bgImage.setAttribute('src', 'background-day-0.png');
+        this.textContent = '☀';
       }
-
-      currentImageIndex = (currentImageIndex + 1) % dayImages.length;
     });
 
     function createRipple(event) {
       const button = event.currentTarget;
-      const circle = document.createElement("span");
+      const circle = document.createElement('span');
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
 
       circle.style.width = circle.style.height = `${diameter}px`;
       circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
       circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple");
+      circle.classList.add('ripple');
 
-      const ripple = button.getElementsByClassName("ripple")[0];
+      const ripple = button.getElementsByClassName('ripple')[0];
 
       if (ripple) {
         ripple.remove();
