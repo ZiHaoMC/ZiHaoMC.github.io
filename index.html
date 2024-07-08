@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       background-color: gray; /* 默认背景色为灰色 */
       min-height: 200vh; /* 增加页面高度以允许滚动 */
@@ -16,6 +17,7 @@
       flex-direction: column;
       align-items: center;
     }
+
     .bg-container {
       position: absolute;
       top: 0;
@@ -24,12 +26,14 @@
       height: 100vh; /* 设置背景图片高度 */
       z-index: -1; /* 确保背景在所有内容后面 */
     }
+
     .bg-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       filter: brightness(0.7); /* 调整亮度 */
     }
+
     .container {
       display: flex;
       flex-direction: column;
@@ -41,6 +45,7 @@
       z-index: 1;
       position: relative;
     }
+
     @keyframes fadeInFromBottom {
       from {
         opacity: 0;
@@ -51,6 +56,7 @@
         transform: translateY(0);
       }
     }
+
     @keyframes fadeInFromTop {
       from {
         opacity: 0;
@@ -61,6 +67,7 @@
         transform: translateY(0);
       }
     }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -69,16 +76,19 @@
         opacity: 1;
       }
     }
+
     h1 {
       color: white;
       font-size: 3em;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
     }
+
     .server-info p {
       opacity: 0;
       animation: fadeInFromBottom 1s ease forwards;
     }
+
     .btn {
       position: relative;
       display: inline-block;
@@ -93,6 +103,7 @@
       animation-delay: 1.25s;
       overflow: hidden;
     }
+
     .ripple {
       position: absolute;
       border-radius: 50%;
@@ -100,12 +111,14 @@
       transform: scale(0);
       animation: ripple-animation 0.6s linear;
     }
+
     @keyframes ripple-animation {
       to {
         transform: scale(4);
         opacity: 0;
       }
     }
+
     .bottom-text {
       position: absolute;
       bottom: 10px;
@@ -115,6 +128,7 @@
       color: rgba(255, 255, 255, 0.1);
       user-select: none;
     }
+
     .navbar {
       position: fixed;
       top: 10px;
@@ -123,6 +137,7 @@
       gap: 15px;
       z-index: 10;
     }
+
     .navbar a {
       color: white;
       text-decoration: none;
@@ -133,39 +148,51 @@
       animation: fadeInFromTop 1s ease forwards;
       transition: background-color 0.3s;
     }
+
     .navbar a:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
+
     .navbar a:nth-child(1) {
       animation-delay: 0.1s;
     }
+
     .navbar a:nth-child(2) {
       animation-delay: 0.2s;
     }
+
     .navbar a:nth-child(3) {
       animation-delay: 0.3s;
     }
+
     .navbar a:nth-child(4) {
       animation-delay: 0.4s;
     }
+
     .navbar a:nth-child(5) {
       animation-delay: 0.5s;
     }
+
     .navbar a:nth-child(6) {
       animation-delay: 0.6s;
     }
+
     .navbar a:nth-child(7) {
       animation-delay: 0.7s;
     }
+
     .navbar a:nth-child(8) {
       animation-delay: 0.8s;
     }
+
     .navbar a:nth-child(9) {
       animation-delay: 0.9s;
     }
+
     .navbar a:nth-child(10) {
       animation-delay: 1s;
     }
+
     .home-btn {
       position: fixed;
       top: 10px;
@@ -180,9 +207,11 @@
       z-index: 10;
       transition: background-color 0.3s;
     }
+
     .home-btn:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
+
     .night-mode-btn {
       position: fixed;
       top: 50px;
@@ -198,9 +227,11 @@
       z-index: 10;
       transition: background-color 0.3s;
     }
+
     .night-mode-btn:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
+
     @keyframes fadeInFromRight {
       from {
         opacity: 0;
@@ -211,11 +242,11 @@
         transform: translateX(0);
       }
     }
+
     .left-top-image {
       position: relative;
       top: 40px; /* 调整此值以向下移动图片 */
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
       width: 100vw; /* 宽度铺满整个视口 */
       height: auto;
       max-height: 20vh;
@@ -223,27 +254,30 @@
       z-index: 2;
       opacity: 0;
       animation: fadeInFromBottom 1s ease forwards;
-      animation-delay: 0.5s;
+      animation-delay: 0.5s; /* 设置动画延迟 */
     }
+
     .server-info-text {
       position: absolute;
-      top: 106vh; /* 固定到背景图片下方 */
+      top: 103vh; /* 固定到背景图片下方 */
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -100%); /* 保持水平居中 */
       color: white;
       font-size: 2em;
       text-align: center;
       z-index: 3;
       opacity: 0;
       animation: fadeInFromBottom 1s ease forwards;
-      animation-delay: 0.5s;
+      animation-delay: 1s; /* 设置动画延迟 */
     }
+
   </style>
 </head>
 <body>
   <div class="bg-container">
     <img id="bg-image" src="background-day-0.png" alt="Background">
   </div>
+
   <!-- 右上角的导航栏 -->
   <div class="navbar">
     <a href="login.html">注册与登录</a>
@@ -257,8 +291,10 @@
     <a href="wiki.html">Wiki</a>
     <a href="https://zihaomc.github.io">关于我们</a>
   </div>
+
   <!-- 左上角的首页按钮 -->
   <a href="index.html" class="home-btn">首页</a>
+
   <!-- 夜间模式按钮 -->
   <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
   <!-- 添加服务器信息 -->
@@ -271,21 +307,28 @@
       <a href="https://www.mcbbs.net/" class="btn" onclick="createRipple(event)">前往论坛</a>
     </div>
   </div>
+
   <!-- 服务器信息文本 -->
   <div class="server-info-text">服务器信息</div>
+
   <!-- 左上角的图片 -->
   <img id="left-top-image" class="left-top-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
+
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
     const bgImage = document.getElementById('bg-image');
     const leftTopImage = document.getElementById('left-top-image');
+
     const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
     const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
+
     let isNightMode = false;
     let currentImageIndex = 0;
+
     nightModeBtn.addEventListener('click', () => {
       document.body.classList.toggle('night-mode');
       isNightMode = !isNightMode;
+
       if (isNightMode) {
         nightModeBtn.textContent = '🌙';
         bgImage.src = nightImages[currentImageIndex];
@@ -293,21 +336,27 @@
         nightModeBtn.textContent = '☀';
         bgImage.src = dayImages[currentImageIndex];
       }
+
       currentImageIndex = (currentImageIndex + 1) % dayImages.length;
     });
+
     function createRipple(event) {
       const button = event.currentTarget;
       const circle = document.createElement("span");
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
+
       circle.style.width = circle.style.height = `${diameter}px`;
       circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
       circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
       circle.classList.add("ripple");
+
       const ripple = button.getElementsByClassName("ripple")[0];
+
       if (ripple) {
         ripple.remove();
       }
+
       button.appendChild(circle);
     }
   </script>
