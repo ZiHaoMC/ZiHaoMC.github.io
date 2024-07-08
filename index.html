@@ -252,6 +252,9 @@
       max-height: 20vh;
       object-fit: contain;
       z-index: 2;
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 0.5s; /* 设置动画延迟 */
     }
 
     .server-info-text {
@@ -263,6 +266,9 @@
       font-size: 2em;
       text-align: center;
       z-index: 3;
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 1s; /* 设置动画延迟 */
     }
 
   </style>
@@ -291,7 +297,6 @@
 
   <!-- 夜间模式按钮 -->
   <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
-
   <!-- 添加服务器信息 -->
   <div class="container">
     <h1>Zcraft</h1> <!-- 添加标题 -->
