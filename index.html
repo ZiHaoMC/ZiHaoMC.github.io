@@ -282,6 +282,11 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
+      display: none; /* 默认隐藏所有更新 */
+    }
+
+    .news-update-list.latest {
+      display: block; /* 仅显示包含 latest 的更新 */
     }
 
     .news-update-list p {
@@ -316,7 +321,7 @@
 
   <!-- 添加服务器信息 -->
   <div class="container">
-    <h1>Zcraft</h1>
+    <h1>Zcraft</h1> <!-- 添加标题 -->
     <div class="server-info">
       <p>服务器：<code>play.simpfun.cn:26097</code></p>
       <p>版本：<code>1.20.1</code></p>
@@ -334,21 +339,8 @@
   <div id="news-updates-section" class="server-info-text">新闻与更新</div>
 
   <!-- 新闻与更新内容 -->
-  <div class="news-update-list">
+  <div class="news-update-list latest">
     <p>2024.7.4 (latest) 二本更新完成</p>
-    <p>2024.7.3 二本Boss</p>
-    <p>2024.3.16 大怪-智慧体首领</p>
-    <p>2024.3.15 小怪-智慧体</p>
-    <p>2024.3.4 小怪-捕食者</p>
-    <p>2024.2.26 小怪-强盗</p>
-    <p>2024.2.10 一本更新完成</p>
-    <p>2024.2.9 一本Boss更新</p>
-    <p>2024.1.27 小怪-感染的医疗队员重做</p>
-    <p>2024.1.22 小怪-感染的医疗队员掉落物重置</p>
-    <p>2024.1.20 大怪-感染的员工</p>
-    <p>2024.1.11 小怪-异变体</p>
-    <p>2024.1.2 测试怪物-ybboss</p>
-    <p>2023.12.30 RPG深渊回声成立</p>
   </div>
 
   <script>
