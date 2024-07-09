@@ -134,7 +134,8 @@
       top: 10px;
       right: 10px;
       display: flex;
-      gap: 15px;
+      flex-direction: column;
+      gap: 10px;
       z-index: 10;
     }
 
@@ -222,7 +223,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 5px;
       opacity: 0;
-      animation: fadeInFromRight 1s ease forwards;
+      animation: fadeInFromTop 1s ease forwards;
       animation-delay: 1.1s;
       z-index: 10;
       transition: background-color 0.3s;
@@ -232,14 +233,14 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    @keyframes fadeInFromRight {
+    @keyframes fadeInFromTop {
       from {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateY(-100%);
       }
       to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
       }
     }
 
@@ -269,7 +270,7 @@
     }
 
     #news-updates-section {
-      top: 120vh; /* 将文本进一步下移以避免重叠 */
+      top: 132vh; /* 调整此值以将文本进一步下移 */
     }
 
     .news-update-carousel {
@@ -279,7 +280,9 @@
       justify-content: center;
       text-align: center;
       position: relative;
-      margin-top: 40px; /* 增加上边距以确保文本不会与其他内容重叠 */
+      margin-top: 20px;
+      width: 100%;
+      max-width: 800px;
     }
 
     .news-update-content {
@@ -287,7 +290,6 @@
       transition: opacity 0.5s ease;
       position: absolute;
       width: 100%;
-      max-width: 800px;
       font-size: 1.2em;
       line-height: 1.5;
       left: 50%;
@@ -296,22 +298,22 @@
 
     .news-update-controls {
       margin-top: 10px;
-      display: flex;
-      gap: 20px;
     }
 
     .news-update-button {
-      background: none;
+      background-color: #007bff;
       color: white;
       border: none;
-      font-size: 2em;
-      cursor: pointer;
       padding: 10px;
-      transition: opacity 0.3s, color 0.3s;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin: 0 10px;
     }
 
-    .news-update-button:hover {
-      color: #007bff;
+    .news-update-button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -323,11 +325,15 @@
   <!-- 右上角的导航栏 -->
   <div class="navbar">
     <a href="login.html">注册与登录</a>
-    <a href="#" id="server-info-link">服务器信息</a>
-    <a href="faq.html">FAQ</a>
+    <a href="server-info.html">服务器信息</a>
+    <a href="news-updates.html">新闻与更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="support.html">支持</a>
     <a href="contact.html">联系我们</a>
+    <a href="rules.html">规则</a>
+    <a href="wiki.html">Wiki</a>
     <a href="about.html">关于我们</a>
-    <a href="donate.html">捐赠</a>
   </div>
 
   <a href="index.html" class="home-btn">首页</a>
