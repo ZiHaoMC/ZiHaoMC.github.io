@@ -350,12 +350,22 @@
     const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
     const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
 
-    let isNightMode = false;
+    let isNightMode = localStorage.getItem('isNightMode') === 'true';
     let currentImageIndex = 0;
+
+    if (isNightMode) {
+      document.body.classList.add('night-mode');
+      nightModeBtn.textContent = '🌙';
+      bgImage.src = nightImages[currentImageIndex];
+    } else {
+      nightModeBtn.textContent = '☀';
+      bgImage.src = dayImages[currentImageIndex];
+    }
 
     nightModeBtn.addEventListener('click', () => {
       document.body.classList.toggle('night-mode');
       isNightMode = !isNightMode;
+      localStorage.setItem('isNightMode', isNightMode);
 
       if (isNightMode) {
         nightModeBtn.textContent = '🌙';
