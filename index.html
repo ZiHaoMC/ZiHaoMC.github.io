@@ -272,20 +272,46 @@
       top: 132vh; /* 调整此值以将文本进一步下移 */
     }
 
-    .news-update-list {
-      margin-top: 20px;
-      font-size: 1.2em;
-      text-align: left;
-      max-width: 800px;
-      line-height: 1.5;
+    .news-update-carousel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
+      margin-top: 20px;
     }
 
-    .news-update-list p {
-      margin-bottom: 10px;
+    .news-update-content {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+      width: 100%;
+      max-width: 800px;
+      font-size: 1.2em;
+      line-height: 1.5;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .news-update-controls {
+      margin-top: 10px;
+    }
+
+    .news-update-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin: 0 10px;
+    }
+
+    .news-update-button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -302,19 +328,15 @@
     <a href="community.html">社区</a>
     <a href="store.html">商店</a>
     <a href="support.html">支持</a>
+    <a href="faq.html">FAQ</a>
     <a href="contact.html">联系我们</a>
-    <a href="rules.html">规则</a>
-    <a href="wiki.html">Wiki</a>
-    <a href="https://zcraft.us.kg/about-ourselves">关于我们</a>
+    <a href="about.html">关于我们</a>
+    <a href="donate.html">捐赠</a>
   </div>
 
-  <!-- 左上角的首页按钮 -->
   <a href="index.html" class="home-btn">首页</a>
+  <a href="#" id="night-mode-btn" class="night-mode-btn">☀</a>
 
-  <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
-
-  <!-- 添加服务器信息 -->
   <div class="container">
     <h1>Zcraft</h1>
     <div class="server-info">
@@ -333,38 +355,45 @@
   <!-- 新闻与更新文本 -->
   <div id="news-updates-section" class="server-info-text">新闻与更新</div>
 
-  <!-- 新闻与更新内容 -->
-  <div class="news-update-list">
-    <p>2024.7.4 (latest) 二本更新完成</p>
-    <p>2024.7.3 二本Boss</p>
-    <p>2024.3.16 大怪-智慧体首领</p>
-    <p>2024.3.15 小怪-智慧体</p>
-    <p>2024.3.4 小怪-捕食者</p>
-    <p>2024.2.26 小怪-强盗</p>
-    <p>2024.2.10 一本更新完成</p>
-    <p>2024.2.9 一本Boss更新</p>
-    <p>2024.1.27 小怪-感染的医疗队员重做</p>
-    <p>2024.1.22 小怪-感染的医疗队员掉落物重置</p>
-    <p>2024.1.20 大怪-感染的员工</p>
-    <p>2024.1.11 小怪-异变体</p>
-    <p>2024.1.2 测试怪物-ybboss</p>
-    <p>2023.12.30 RPG深渊回声成立</p>
+  <!-- 新闻与更新内容轮播 -->
+  <div class="news-update-carousel">
+    <div class="news-update-content" id="news-update-0">2024.7.4 (latest) 二本更新完成</div>
+    <div class="news-update-content" id="news-update-1">2024.7.3 二本Boss</div>
+    <div class="news-update-content" id="news-update-2">2024.3.16 大怪-智慧体首领</div>
+    <div class="news-update-content" id="news-update-3">2024.3.15 小怪-智慧体</div>
+    <div class="news-update-content" id="news-update-4">2024.3.4 小怪-捕食者</div>
+    <div class="news-update-content" id="news-update-5">2024.2.26 小怪-强盗</div>
+    <div class="news-update-content" id="news-update-6">2024.2.10 一本更新完成</div>
+    <div class="news-update-content" id="news-update-7">2024.2.9 一本Boss更新</div>
+    <div class="news-update-content" id="news-update-8">2024.1.27 小怪-感染的医疗队员重做</div>
+    <div class="news-update-content" id="news-update-9">2024.1.22 小怪-感染的医疗队员掉落物重置</div>
+    <div class="news-update-content" id="news-update-10">2024.1.20 大怪-感染的员工</div>
+    <div class="news-update-content" id="news-update-11">2024.1.11 小怪-异变体</div>
+    <div class="news-update-content" id="news-update-12">2024.1.2 测试怪物-ybboss</div>
+    <div class="news-update-content" id="news-update-13">2023.12.30 RPG深渊回声成立</div>
+
+    <div class="news-update-controls">
+      <button class="news-update-button" id="prev-btn">←</button>
+      <button class="news-update-button" id="next-btn">→</button>
+    </div>
   </div>
 
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
     const bgImage = document.getElementById('bg-image');
-
+    const newsUpdateContents = document.querySelectorAll('.news-update-content');
+    let currentIndex = 0;
+    
     const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
     const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
-
+    
     let isNightMode = false;
     let currentImageIndex = 0;
 
     nightModeBtn.addEventListener('click', () => {
       document.body.classList.toggle('night-mode');
       isNightMode = !isNightMode;
-
+      
       if (isNightMode) {
         nightModeBtn.textContent = '🌙';
         bgImage.src = nightImages[currentImageIndex];
@@ -372,7 +401,7 @@
         nightModeBtn.textContent = '☀';
         bgImage.src = dayImages[currentImageIndex];
       }
-
+      
       currentImageIndex = (currentImageIndex + 1) % dayImages.length;
     });
 
@@ -400,6 +429,24 @@
       e.preventDefault();
       document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
     });
+
+    function showNextUpdate() {
+      newsUpdateContents[currentIndex].style.opacity = 0;
+      currentIndex = (currentIndex + 1) % newsUpdateContents.length;
+      newsUpdateContents[currentIndex].style.opacity = 1;
+    }
+
+    function showPrevUpdate() {
+      newsUpdateContents[currentIndex].style.opacity = 0;
+      currentIndex = (currentIndex - 1 + newsUpdateContents.length) % newsUpdateContents.length;
+      newsUpdateContents[currentIndex].style.opacity = 1;
+    }
+
+    document.getElementById('next-btn').addEventListener('click', showNextUpdate);
+    document.getElementById('prev-btn').addEventListener('click', showPrevUpdate);
+
+    // 初始化第一个更新为可见
+    newsUpdateContents[currentIndex].style.opacity = 1;
   </script>
 </body>
 </html>
