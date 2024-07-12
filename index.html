@@ -294,6 +294,32 @@
     .news-update-list p {
       margin-bottom: 10px;
     }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
   </style>
 </head>
 <body>
@@ -332,7 +358,7 @@
   </div>
 
   <!-- 服务器信息文本 -->
-  <div id="server-info-section" class="server-info-text">服务器信息</div>
+  <div id="server-info-section" class="server-info-text" id="clickable-text">服务器信息</div>
 
   <!-- 服务器信息图片 -->
   <img id="server-info-image" class="server-info-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
@@ -344,6 +370,9 @@
   <div class="news-update-list latest">
     <p>2024.7.4 (latest) 二本更新完成</p>
   </div>
+
+  <!-- 隐藏的替换文本 -->
+  <div id="replacement-text" class="server-info-text" style="display: none;">测试文本</div>
 
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
@@ -403,6 +432,23 @@
     document.getElementById('server-info-link').addEventListener('click', (e) => {
       e.preventDefault();
       document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('clickable-text').addEventListener('click', function () {
+      const clickableText = document.getElementById('clickable-text');
+      const replacementText = document.getElementById('replacement-text');
+
+      // 添加淡出动画
+      clickableText.classList.add('fade-out');
+
+      // 在淡出动画结束后，隐藏当前文本并显示替换文本
+      clickableText.addEventListener('animationend', function () {
+        clickableText.style.display = 'none';
+        replacementText.style.display = 'block';
+
+        // 添加淡入动画
+        replacementText.classList.add('fade-in');
+      }, { once: true });
     });
   </script>
 </body>
