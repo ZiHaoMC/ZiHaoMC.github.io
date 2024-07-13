@@ -269,7 +269,7 @@
     }
 
     #news-updates-section {
-      top: 132vh; /* 调整此值以将文本进一步下移 */
+      top: 150vh; /* 固定到服务器信息文本下方 */
     }
 
     .news-update-list {
@@ -368,7 +368,7 @@
 
   <!-- 新闻与更新内容 -->
   <div class="news-update-list latest">
-    <p>2024.7.4 (latest) 二本更新完成</p>
+    <p id="news-update-text">2024.7.4 (latest) 二本更新完成</p>
   </div>
 
   <!-- 隐藏的替换文本 -->
@@ -434,16 +434,16 @@
       document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
     });
 
-    document.getElementById('clickable-text').addEventListener('click', function () {
-      const clickableText = document.getElementById('clickable-text');
+    document.getElementById('news-update-text').addEventListener('click', function () {
+      const newsUpdateText = document.getElementById('news-update-text');
       const replacementText = document.getElementById('replacement-text');
 
       // 添加淡出动画
-      clickableText.classList.add('fade-out');
+      newsUpdateText.classList.add('fade-out');
 
       // 在淡出动画结束后，隐藏当前文本并显示替换文本
-      clickableText.addEventListener('animationend', function () {
-        clickableText.style.display = 'none';
+      newsUpdateText.addEventListener('animationend', function () {
+        newsUpdateText.style.display = 'none';
         replacementText.style.display = 'block';
 
         // 添加淡入动画
