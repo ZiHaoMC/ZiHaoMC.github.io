@@ -243,32 +243,43 @@
       }
     }
 
-    .server-info-image { /* 这个是显示服务器信息图片 */
+    .server-info-image {
       position: relative;
       top: 40px; /* 调整此值以向下移动图片 */
       left: 0;
+      width: 100vw; /* 宽度铺满整个视口 */
       height: auto;
       max-height: 20vh;
       object-fit: contain;
       z-index: 2;
     }
 
-    #server-info-section { /* 这是显示服务器信息图片上面的服务器信息文本 */
-      top: 115vh; /* 固定到背景图片下方 */
+    .server-info-text {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      z-index: 3;
     }
 
-    #news-updates-section { /* 这是新闻与更新文本 */
-      top: 123vh; /* 固定到服务器信息文本下方 */
+    #server-info-section {
+      top: 106vh; /* 固定到背景图片下方 */
     }
 
-    .news-update-list { /* 这是新闻与更新下面的文本 */
+    #news-updates-section {
+      top: 132vh; /* 调整此值以将文本进一步下移 */
+    }
+
+    .news-update-list {
       margin-top: 20px;
       font-size: 1.2em;
       text-align: left;
       max-width: 800px;
       line-height: 1.5;
       position: absolute;
-      top: 150vh; /* 放置在news-updates-section正下方 */
+      top: 150%; /* 放置在news-updates-section正下方 */
       left: 50%;
       transform: translateX(-50%);
       color: white;
@@ -318,126 +329,88 @@
 
   <!-- 右上角的导航栏 -->
   <div class="navbar">
-    <a href="login.html">注册与登录</a>
-    <a href="#" id="server-info-link">服务器信息</a>
-    <a href="news-updates.html">新闻与更新</a>
-    <a href="community.html">社区</a>
-    <a href="store.html">商店</a>
-    <a href="support.html">支持</a>
-    <a href="contact.html">联系我们</a>
-    <a href="rules.html">规则</a>
-    <a href="wiki.html">Wiki</a>
-    <a href="https://zcraft.us.kg/about-ourselves">关于我们</a>
+    <a href="index.html">Home</a>
+    <a href="zcraft-overview.html">Zcraft Overview</a>
+    <a href="server-info.html">Server Info</a>
+    <a href="news-updates.html">News & Updates</a>
+    <a href="community-forum.html">Community Forum</a>
+    <a href="gameplay-guides.html">Gameplay Guides</a>
+    <a href="events-calendar.html">Events Calendar</a>
+    <a href="support.html">Support</a>
+    <a href="contact-us.html">Contact Us</a>
+    <a href="faq.html">FAQ</a>
   </div>
 
-  <!-- 左上角的首页按钮 -->
-  <a href="index.html" class="home-btn">首页2</a>
+  <a href="index.html" class="home-btn">Home</a>
 
-  <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
-
-  <!-- 添加服务器信息 -->
   <div class="container">
-    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <h1>Zcraft</h1>
     <div class="server-info">
-      <p>服务器：<code>play.simpfun.cn:26097</code></p>
-      <p>版本：<code>1.20.1</code></p>
-      <a href="https://zcraft.us.kg/login.html/" class="btn" onclick="createRipple(event)">加入我们</a>
+      <img class="server-info-image" src="server-info.png" alt="Server Info">
+      <div class="server-info-text">
+        <span id="clickable-text">
+          Server Info
+          <a href="#" id="server-info-link">Read More</a>
+        </span>
+        <div id="replacement-text" style="display:none;">
+          Server details, IP: play.zcraft.com
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 服务器信息文本 -->
-  <div id="server-info-section" class="server-info-text" id="clickable-text">服务器信息</div>
-
-  <!-- 服务器信息图片 -->
-  <img id="server-info-image" class="server-info-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
-
-  <!-- 新闻与更新文本 -->
-  <div id="news-updates-section" class="server-info-text">新闻与更新</div>
-
-  <!-- 新闻与更新内容 -->
   <div class="news-update-list latest">
-    <p id="news-update-text">2024.7.4 (latest) 二本更新完成</p>
+    <p>Update 1: New features added!</p>
+    <p>Update 2: Maintenance scheduled for next week.</p>
+    <p>Update 3: Community event coming soon!</p>
   </div>
 
-  <!-- 隐藏的替换文本 -->
-  <div id="replacement-text" class="server-info-text" style="display: none;">测试文本</div>
+  <div class="bottom-text">
+    <p>&copy; 2024 Zcraft. All rights reserved.</p>
+  </div>
 
   <script>
-    const nightModeBtn = document.getElementById('night-mode-btn');
-    const bgImage = document.getElementById('bg-image');
-
-    const dayImages = ['background-day-0.png', 'background-day-1.png', 'background-day-2.png'];
-    const nightImages = ['background-night-0.png', 'background-night-1.png', 'background-night-2.png'];
-
-    let isNightMode = localStorage.getItem('isNightMode') === 'true';
-    let currentImageIndex = 0;
-
-    if (isNightMode) {
-      document.body.classList.add('night-mode');
-      nightModeBtn.textContent = '🌙';
-      bgImage.src = nightImages[currentImageIndex];
-    } else {
-      nightModeBtn.textContent = '☀';
-      bgImage.src = dayImages[currentImageIndex];
-    }
-
-    nightModeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('night-mode');
-      isNightMode = !isNightMode;
-      localStorage.setItem('isNightMode', isNightMode);
-
-      if (isNightMode) {
-        nightModeBtn.textContent = '🌙';
-        bgImage.src = nightImages[currentImageIndex];
-      } else {
-        nightModeBtn.textContent = '☀';
-        bgImage.src = dayImages[currentImageIndex];
-      }
-
-      currentImageIndex = (currentImageIndex + 1) % dayImages.length;
-    });
-
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-      circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-      circle.classList.add("ripple");
-
-      const ripple = button.getElementsByClassName("ripple")[0];
-
-      if (ripple) {
-        ripple.remove();
-      }
-
-      button.appendChild(circle);
-    }
-
     document.getElementById('server-info-link').addEventListener('click', (e) => {
       e.preventDefault();
-      document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
-    });
 
-    document.getElementById('news-update-text').addEventListener('click', function () {
-      const newsUpdateText = document.getElementById('news-update-text');
+      const clickableText = document.getElementById('clickable-text');
       const replacementText = document.getElementById('replacement-text');
 
       // 添加淡出动画
-      newsUpdateText.classList.add('fade-out');
+      clickableText.classList.add('fade-out');
 
       // 在淡出动画结束后，隐藏当前文本并显示替换文本
-      newsUpdateText.addEventListener('animationend', function () {
-        newsUpdateText.style.display = 'none';
+      clickableText.addEventListener('animationend', function () {
+        clickableText.style.display = 'none';
         replacementText.style.display = 'block';
 
         // 添加淡入动画
         replacementText.classList.add('fade-in');
       }, { once: true });
+    });
+
+    document.querySelector('.btn').addEventListener('click', function (e) {
+      const ripple = document.createElement('span');
+      const size = Math.max(this.clientWidth, this.clientHeight);
+      const x = e.clientX - this.offsetLeft - size / 2;
+      const y = e.clientY - this.offsetTop - size / 2;
+
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.classList.add('ripple');
+
+      this.appendChild(ripple);
+
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
+
+    // 夜间模式按钮
+    const nightModeBtn = document.querySelector('.night-mode-btn');
+    nightModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
     });
   </script>
 </body>
