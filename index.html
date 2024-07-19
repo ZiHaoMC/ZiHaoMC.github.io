@@ -11,17 +11,11 @@
     }
 
     body {
-      background-color: #ffffff; /* 默认背景色为白色（白天模式） */
-      color: black; /* 默认字体颜色为黑色（白天模式） */
+      background-color: #181818; /* 默认背景色为#181818 */
       min-height: 200vh; /* 增加页面高度以允许滚动 */
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    body.night-mode {
-      background-color: #181818; /* 夜间模式背景色 */
-      color: white; /* 夜间模式字体颜色 */
     }
 
     .bg-container {
@@ -38,10 +32,6 @@
       height: 100%;
       object-fit: cover;
       filter: brightness(0.7); /* 调整亮度 */
-    }
-
-    .night-mode .bg-container img {
-      filter: brightness(0.3); /* 夜间模式下背景图更暗 */
     }
 
     .container {
@@ -257,7 +247,6 @@
       position: relative;
       top: 40px; /* 调整此值以向下移动图片 */
       left: 0;
-      width: 100vw; /* 宽度铺满整个视口 */
       height: auto;
       max-height: 20vh;
       object-fit: contain;
@@ -279,7 +268,7 @@
     }
 
     #news-updates-section {
-      top: 132vh; /* 调整此值以将文本进一步下移 */
+      top: 150vh; /* 固定到服务器信息文本下方 */
     }
 
     .news-update-list {
@@ -289,7 +278,7 @@
       max-width: 800px;
       line-height: 1.5;
       position: absolute;
-      top: 132vh; /* 放置在news-updates-section正下方 */
+      top: 150%; /* 放置在news-updates-section正下方 */
       left: 50%;
       transform: translateX(-50%);
       color: white;
@@ -339,50 +328,50 @@
 
   <!-- 右上角的导航栏 -->
   <div class="navbar">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
+    <a href="login.html">注册与登录</a>
+    <a href="#" id="server-info-link">服务器信息</a>
+    <a href="news-updates.html">新闻与更新</a>
+    <a href="community.html">社区</a>
+    <a href="store.html">商店</a>
+    <a href="support.html">支持</a>
+    <a href="contact.html">联系我们</a>
+    <a href="rules.html">规则</a>
+    <a href="wiki.html">Wiki</a>
+    <a href="https://zcraft.us.kg/about-ourselves">关于我们</a>
   </div>
 
-  <!-- 左上角的Home按钮 -->
-  <a href="#home" class="home-btn">Home</a>
+  <!-- 左上角的首页按钮 -->
+  <a href="index.html" class="home-btn">首页</a>
 
-  <!-- 右上角的夜间模式按钮 -->
-  <button id="night-mode-btn" class="night-mode-btn">☀</button>
+  <!-- 夜间模式按钮 -->
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
 
-  <!-- 主要内容 -->
+  <!-- 添加服务器信息 -->
   <div class="container">
-    <h1>Welcome to Zcraft</h1>
-    <p id="clickable-text" style="color: white;">click here for server details</p>
-    <p id="replacement-text" style="display: none; color: white;">server details here</p>
-    <a href="#server-info-section" id="server-info-link" class="btn">Server Info</a>
+    <h1>Zcraft</h1> <!-- 添加标题 -->
+    <div class="server-info">
+      <p>服务器：<code>play.simpfun.cn:26097</code></p>
+      <p>版本：<code>1.20.1</code></p>
+      <a href="https://zcraft.us.kg/login.html/" class="btn" onclick="createRipple(event)">加入我们</a>
+    </div>
   </div>
 
-  <!-- 服务器信息 -->
-  <section id="server-info-section">
-    <div class="server-info">
-      <p>Server Information</p>
-      <img class="server-info-image" src="https://dummyimage.com/600x400/000/fff.png&text=Server+Info" alt="Server Info">
-      <p class="server-info-text">More server details here</p>
-    </div>
-  </section>
+  <!-- 服务器信息文本 -->
+  <div id="server-info-section" class="server-info-text" id="clickable-text">服务器信息</div>
 
-  <!-- 新闻更新 -->
-  <section id="news-updates-section">
-    <h2 style="text-align: center; color: white;">News Updates</h2>
-    <div class="news-update-list latest">
-      <p>Latest update 1</p>
-      <p>Latest update 2</p>
-      <p>Latest update 3</p>
-    </div>
-    <div class="news-update-list">
-      <p>Update 1</p>
-      <p>Update 2</p>
-      <p>Update 3</p>
-    </div>
-  </section>
+  <!-- 服务器信息图片 -->
+  <img id="server-info-image" class="server-info-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
+
+  <!-- 新闻与更新文本 -->
+  <div id="news-updates-section" class="server-info-text">新闻与更新</div>
+
+  <!-- 新闻与更新内容 -->
+  <div class="news-update-list latest">
+    <p id="news-update-text">2024.7.4 (latest) 二本更新完成</p>
+  </div>
+
+  <!-- 隐藏的替换文本 -->
+  <div id="replacement-text" class="server-info-text" style="display: none;">测试文本</div>
 
   <script>
     const nightModeBtn = document.getElementById('night-mode-btn');
@@ -394,26 +383,29 @@
     let isNightMode = localStorage.getItem('isNightMode') === 'true';
     let currentImageIndex = 0;
 
-    function updateMode() {
+    if (isNightMode) {
+      document.body.classList.add('night-mode');
+      nightModeBtn.textContent = '🌙';
+      bgImage.src = nightImages[currentImageIndex];
+    } else {
+      nightModeBtn.textContent = '☀';
+      bgImage.src = dayImages[currentImageIndex];
+    }
+
+    nightModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
+      isNightMode = !isNightMode;
+      localStorage.setItem('isNightMode', isNightMode);
+
       if (isNightMode) {
-        document.body.classList.add('night-mode');
         nightModeBtn.textContent = '🌙';
         bgImage.src = nightImages[currentImageIndex];
       } else {
-        document.body.classList.remove('night-mode');
         nightModeBtn.textContent = '☀';
         bgImage.src = dayImages[currentImageIndex];
       }
 
       currentImageIndex = (currentImageIndex + 1) % dayImages.length;
-    }
-
-    updateMode();
-
-    nightModeBtn.addEventListener('click', () => {
-      isNightMode = !isNightMode;
-      localStorage.setItem('isNightMode', isNightMode);
-      updateMode();
     });
 
     function createRipple(event) {
@@ -441,15 +433,19 @@
       document.getElementById('server-info-section').scrollIntoView({ behavior: 'smooth' });
     });
 
-    document.getElementById('clickable-text').addEventListener('click', function () {
-      const clickableText = document.getElementById('clickable-text');
+    document.getElementById('news-update-text').addEventListener('click', function () {
+      const newsUpdateText = document.getElementById('news-update-text');
       const replacementText = document.getElementById('replacement-text');
 
-      clickableText.classList.add('fade-out');
+      // 添加淡出动画
+      newsUpdateText.classList.add('fade-out');
 
-      clickableText.addEventListener('animationend', function () {
-        clickableText.style.display = 'none';
+      // 在淡出动画结束后，隐藏当前文本并显示替换文本
+      newsUpdateText.addEventListener('animationend', function () {
+        newsUpdateText.style.display = 'none';
         replacementText.style.display = 'block';
+
+        // 添加淡入动画
         replacementText.classList.add('fade-in');
       }, { once: true });
     });
