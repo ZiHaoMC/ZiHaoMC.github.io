@@ -445,8 +445,10 @@
         newsUpdateText.style.display = 'none';
         replacementText.style.display = 'block';
 
-        // 添加淡入动画
+        // 让替换文本淡入，并与原文本位置一致
         replacementText.classList.add('fade-in');
+        replacementText.style.top = newsUpdateText.style.top;
+        replacementText.style.left = newsUpdateText.style.left;
       }, { once: true });
     });
   </script>
