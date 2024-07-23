@@ -322,6 +322,15 @@
 
     .fade-out-in {
       position: relative;
+      display: inline-block; /* 确保文本内容在同一行 */
+      width: 100%; /* 保持父元素的宽度 */
+      text-align: center; /* 居中对齐 */
+    }
+
+    .fade-out-in-text {
+      position: absolute; /* 使得替换文本在相同位置 */
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
 </head>
@@ -330,11 +339,8 @@
     <img id="bg-image" src="background-day-0.png" alt="Background">
   </div>
 
-  <!-- 右上角的导航栏 -->
+  <!-- 导航栏 -->
   <div class="navbar">
-    <a href="login.html">注册与登录</a>
-    <a href="#" id="server-info-link">服务器信息</a>
-    <a href="news-updates.html">新闻与更新</a>
     <a href="event.html">活动</a>
     <a href="resource.html">资源</a>
     <a href="shop.html">商店</a>
