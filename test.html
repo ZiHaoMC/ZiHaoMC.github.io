@@ -11,12 +11,12 @@
     }
 
     body {
-      background-color: white; /* 默认背景色为白色 */
+      background-color: #181818; /* 默认背景色 */
       min-height: 200vh; /* 增加页面高度以允许滚动 */
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: black; /* 默认文本颜色为黑色 */
+      transition: background-color 0.3s;
     }
 
     .bg-container {
@@ -46,7 +46,39 @@
       position: relative;
     }
 
+    @keyframes fadeInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
     h1 {
+      color: white;
       font-size: 3em;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
@@ -107,6 +139,7 @@
     }
 
     .navbar a {
+      color: white;
       text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -168,6 +201,7 @@
       position: fixed;
       top: 10px;
       left: 10px;
+      color: white;
       text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -186,6 +220,7 @@
       position: fixed;
       top: 50px;
       right: 10px;
+      color: white;
       text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -229,6 +264,7 @@
       font-size: 2em;
       text-align: center;
       z-index: 3;
+      color: white;
     }
 
     #server-info-section {
@@ -249,6 +285,7 @@
       top: 150%; /* 放置在news-updates-section正下方 */
       left: 50%;
       transform: translateX(-50%);
+      color: white;
       z-index: 3;
       display: none; /* 默认隐藏所有更新 */
     }
@@ -290,6 +327,24 @@
     .fade-out-in {
       position: relative;
     }
+
+    .day-mode .navbar a,
+    .day-mode .home-btn,
+    .day-mode .night-mode-btn,
+    .day-mode .server-info p,
+    .day-mode .server-info-text,
+    .day-mode .news-update-list p {
+      color: black; /* 白天模式下文本颜色 */
+    }
+
+    .night-mode .navbar a,
+    .night-mode .home-btn,
+    .night-mode .night-mode-btn,
+    .night-mode .server-info p,
+    .night-mode .server-info-text,
+    .night-mode .news-update-list p {
+      color: white; /* 夜间模式下文本颜色 */
+    }
   </style>
 </head>
 <body>
@@ -316,7 +371,7 @@
   <a href="index.html" class="home-btn">首页</a>
 
   <!-- 夜间模式按钮 -->
-  <a href="#" class="night-mode-btn" id="night-mode-btn">☀</a>
+  <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
 
   <!-- 添加服务器信息 -->
   <div class="container">
@@ -361,15 +416,16 @@
       nightModeBtn.textContent = '🌙';
       bgImage.src = nightImages[currentImageIndex];
       body.style.backgroundColor = 'black';
-      body.style.color = 'white';
     } else {
+      body.classList.add('day-mode');
       nightModeBtn.textContent = '☀';
       bgImage.src = dayImages[currentImageIndex];
       body.style.backgroundColor = 'white';
-      body.style.color = 'black';
     }
 
     nightModeBtn.addEventListener('click', () => {
+      body.classList.toggle('night-mode');
+      body.classList.toggle('day-mode');
       isNightMode = !isNightMode;
       localStorage.setItem('isNightMode', isNightMode);
 
@@ -377,12 +433,10 @@
         nightModeBtn.textContent = '🌙';
         bgImage.src = nightImages[currentImageIndex];
         body.style.backgroundColor = 'black';
-        body.style.color = 'white';
       } else {
         nightModeBtn.textContent = '☀';
         bgImage.src = dayImages[currentImageIndex];
         body.style.backgroundColor = 'white';
-        body.style.color = 'black';
       }
 
       currentImageIndex = (currentImageIndex + 1) % dayImages.length;
