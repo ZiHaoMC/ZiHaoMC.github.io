@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="height-full" data-a11y-animated-images="system" data-a11y-link-underlines="true">
+<head>
+  <meta charset="utf-8">
+  <title>Zcraft</title>
+  <link rel="icon" href="site.png" type="image/png">
+  <link media="all" rel="stylesheet" href="./primer.css" />
+  <link media="all" rel="stylesheet" href="./site.css" />
+  <link media="all" rel="stylesheet" href="./signup.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    .profile img {
+      border-radius: 10px;
+      width: 300px;
+      height: 400px;
+      margin-right: 20px;
+    }
+
+    .profile-description {
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      opacity: 0;
+      animation: fadeInFromBottom 1s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .button-container a {
+      position: relative;
+      padding: 10px 20px;
+      color: white;
+      background-color: #007bff;
+      text-decoration: none;
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container a:hover {
+      background-color: #0056b3;
+    }
+
+    .button-container a:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.6s ease;
+      opacity: 0;
+      z-index: -1;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    .button-container a:active:after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* 从下向上出现的动画 */
+    @keyframes fadeInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body class="height-full d-flex" style="word-wrap: break-word;">
+  <div class="js-warp-hide bg-gray-dark-mktg d-flex flex-auto flex-column overflow-hidden position-relative">
+    <div class="signup-space">
+      <div class="signup-stars"></div>
+      <div class="signup-stars"></div>
+      <div class="signup-stars"></div>
+      <div class="signup-stars"></div>
+      <div class="signup-stars"></div>
+      <div class="signup-stars"></div>
+    </div>
+    <img src="./hero-glow.svg" alt="Glowing universe"
+      class="js-warp-hide position-absolute overflow-hidden events-none"
+      style="top: 50%; left: 50%; width: 200%; transform: translate(-50%, -50%);">
+    <div class="container">
+      <div class="profile">
+        <img src="zihaomc.png" alt="zihaomc">
+        <div class="profile-description">
+          <p>这是zihaomc，一位热衷于Minecraft的玩家和服务器管理员。他致力于为玩家提供最佳的游戏体验。</p>
+        </div>
+      </div>
+      <div class="button-container">
+        <a href="https://zcraft.us.kg">返回主页</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
