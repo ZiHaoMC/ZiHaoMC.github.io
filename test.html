@@ -17,6 +17,7 @@
       flex-direction: column;
       align-items: center;
       transition: background-color 0.3s;
+      color: white; /* 设置全局文本颜色为白色 */
     }
 
     .bg-container {
@@ -78,7 +79,6 @@
     }
 
     h1 {
-      color: white;
       font-size: 3em;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
@@ -125,7 +125,6 @@
       left: 50%;
       transform: translateX(-50%);
       opacity: 0.1;
-      color: rgba(255, 255, 255, 0.1);
       user-select: none;
     }
 
@@ -201,7 +200,6 @@
       position: fixed;
       top: 10px;
       left: 10px;
-      color: white;
       text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -210,6 +208,7 @@
       animation: fadeInFromTop 1s ease forwards;
       z-index: 10;
       transition: background-color 0.3s;
+      color: white;
     }
 
     .home-btn:hover {
@@ -220,7 +219,6 @@
       position: fixed;
       top: 50px;
       right: 10px;
-      color: white;
       text-decoration: none;
       padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.5);
@@ -230,6 +228,7 @@
       animation-delay: 1.1s;
       z-index: 10;
       transition: background-color 0.3s;
+      color: white;
     }
 
     .night-mode-btn:hover {
@@ -257,21 +256,25 @@
       z-index: 2;
     }
 
-    .server-info-text,
-    .server-info p {
-      color: inherit; /* 继承颜色 */
+    .server-info-text {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      font-size: 2em;
+      text-align: center;
+      z-index: 3;
     }
 
-    .persistent-text {
-      color: inherit;
+    #server-info-section,
+    #news-updates-section,
+    .news-update-list {
+      color: black; /* 默认文本颜色为黑色 */
     }
 
-    .day-mode .persistent-text {
-      color: black; /* 白天模式下特定文本颜色 */
-    }
-
-    .night-mode .persistent-text {
-      color: white; /* 夜间模式下特定文本颜色 */
+    .night-mode #server-info-section,
+    .night-mode #news-updates-section,
+    .night-mode .news-update-list {
+      color: white; /* 夜间模式下文本颜色为白色 */
     }
 
     #server-info-section {
@@ -333,18 +336,6 @@
     .fade-out-in {
       position: relative;
     }
-
-    .day-mode .navbar a,
-    .day-mode .home-btn,
-    .day-mode .night-mode-btn {
-      color: black; /* 白天模式下文本颜色 */
-    }
-
-    .night-mode .navbar a,
-    .night-mode .home-btn,
-    .night-mode .night-mode-btn {
-      color: white; /* 夜间模式下文本颜色 */
-    }
   </style>
 </head>
 <body>
@@ -374,7 +365,7 @@
   <a href="#" class="night-mode-btn" id="night-mode-btn"> ☀ </a>
 
   <!-- 添加服务器信息 -->
-  <div class="container persistent-text">
+  <div class="container">
     <h1>Zcraft</h1> <!-- 添加标题 -->
     <div class="server-info">
       <p>服务器：<code>play.simpfun.cn:26097</code></p>
@@ -384,16 +375,16 @@
   </div>
 
   <!-- 服务器信息文本 -->
-  <div id="server-info-section" class="server-info-text persistent-text">服务器信息</div>
+  <div id="server-info-section" class="server-info-text">服务器信息</div>
 
   <!-- 服务器信息图片 -->
   <img id="server-info-image" class="server-info-image" src="https://api.imlazy.ink/mcapi/?name=Zcraft&host=play.simpfun.cn&type=image&getmotd=%0a%0a&getbg=8.jpg&port=26097" alt="Server Status Image">
 
   <!-- 新闻与更新文本 -->
-  <div id="news-updates-section" class="server-info-text persistent-text">新闻与更新</div>
+  <div id="news-updates-section" class="server-info-text">新闻与更新</div>
 
   <!-- 新闻与更新内容 -->
-  <div class="news-update-list latest persistent-text">
+  <div class="news-update-list latest">
     <div class="fade-out-in">
       <p id="news-update-text" class="fade-out-in-text">2024.7.4 (latest) 二本更新完成</p>
       <p id="replacement-text" class="fade-out-in-text" style="opacity: 0;">2024.7.1 二本boss更新</p>
