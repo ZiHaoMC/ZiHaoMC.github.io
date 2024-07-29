@@ -296,15 +296,13 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
-      display: none; /* 默认隐藏所有更新 */
     }
 
-    .news-update-list.latest {
-      display: block; /* 仅显示包含 latest 的更新 */
-    }
-
-    .news-update-list p {
+    .news-update-list.latest p {
       margin-bottom: 10px;
+      position: absolute;
+      width: 100%;
+      text-align: center;
     }
 
     @keyframes fadeOut {
@@ -335,6 +333,8 @@
 
     .fade-out-in {
       position: relative;
+      width: 100%;
+      text-align: center;
     }
   </style>
 </head>
@@ -411,7 +411,7 @@
       body.classList.add('day-mode');
       nightModeBtn.textContent = '☀';
       bgImage.src = dayImages[currentImageIndex];
-      body.style.backgroundColor = 'white';
+      body.style.backgroundColor = '#c0c0c0'; /* 设置日间模式背景为灰色 */
     }
 
     nightModeBtn.addEventListener('click', () => {
@@ -427,7 +427,7 @@
       } else {
         nightModeBtn.textContent = '☀';
         bgImage.src = dayImages[currentImageIndex];
-        body.style.backgroundColor = 'white';
+        body.style.backgroundColor = '#c0c0c0'; /* 设置日间模式背景为灰色 */
       }
 
       currentImageIndex = (currentImageIndex + 1) % dayImages.length;
@@ -468,6 +468,7 @@
       // 在淡出动画结束后，显示替换文本并添加淡入动画
       newsUpdateText.addEventListener('animationend', function () {
         replacementText.classList.add('fade-in');
+        replacementText.style.opacity = 1; // 确保替换文本完全显示
       }, { once: true });
     });
   </script>
