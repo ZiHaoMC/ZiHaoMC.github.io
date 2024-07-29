@@ -291,18 +291,29 @@
       text-align: left;
       max-width: 800px;
       line-height: 1.5;
-      position: absolute;
+      position: relative;
       top: 150%; /* 放置在news-updates-section正下方 */
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
     }
 
-    .news-update-list.latest p {
+    .news-update-list.latest {
+      display: block; /* 仅显示包含 latest 的更新 */
+    }
+
+    .news-update-list p {
       margin-bottom: 10px;
+      text-align: center;
       position: absolute;
       width: 100%;
-      text-align: center;
+    }
+
+    .news-update-list p.fade-out-in-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
     }
 
     @keyframes fadeOut {
@@ -334,7 +345,7 @@
     .fade-out-in {
       position: relative;
       width: 100%;
-      text-align: center;
+      height: 100%;
     }
   </style>
 </head>
