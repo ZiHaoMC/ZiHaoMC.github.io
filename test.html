@@ -296,13 +296,15 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
+      display: none; /* 默认隐藏所有更新 */
     }
 
-    .news-update-list.latest p {
+    .news-update-list.latest {
+      display: block; /* 仅显示包含 latest 的更新 */
+    }
+
+    .news-update-list p {
       margin-bottom: 10px;
-      position: absolute;
-      width: 100%;
-      text-align: center;
     }
 
     @keyframes fadeOut {
@@ -333,8 +335,14 @@
 
     .fade-out-in {
       position: relative;
-      width: 100%;
-      text-align: center;
+    }
+
+    .news-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%; /* 确保宽度一致 */
+      text-align: center; /* 居中对齐 */
     }
   </style>
 </head>
@@ -385,7 +393,7 @@
 
   <!-- 新闻与更新内容 -->
   <div class="news-update-list latest">
-    <div class="fade-out-in">
+    <div class="fade-out-in news-text">
       <p id="news-update-text" class="fade-out-in-text">2024.7.4 (latest) 二本更新完成</p>
       <p id="replacement-text" class="fade-out-in-text" style="opacity: 0;">2024.7.1 二本boss更新</p>
     </div>
@@ -467,8 +475,11 @@
 
       // 在淡出动画结束后，显示替换文本并添加淡入动画
       newsUpdateText.addEventListener('animationend', function () {
+        replacementText.style.opacity = '1'; // 确保替换文本可见
+        replacementText.style.position = 'absolute';
+        replacementText.style.left = newsUpdateText.style.left;
+        replacementText.style.top = newsUpdateText.style.top;
         replacementText.classList.add('fade-in');
-        replacementText.style.opacity = 1; // 确保替换文本完全显示
       }, { once: true });
     });
   </script>
