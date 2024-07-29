@@ -300,7 +300,14 @@
     }
 
     .news-update-list.latest {
-      display: block; /* 仅显示包含 latest 的更新 */
+      display: block; /* 仅显示包含 latest 的列表 */
+    }
+
+    .news-text {
+      position: relative;
+      width: auto;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .news-update-list p {
@@ -308,27 +315,14 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%; /* 确保宽度一致 */
+      width: auto; /* 设置为 auto 以确保宽度适应内容 */
       white-space: nowrap; /* 避免换行 */
       text-align: center; /* 居中对齐 */
+      font-size: 1em; /* 确保字体大小一致 */
     }
 
-    @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    #replacement-text {
+      left: 45%; /* 微调左边距，调整位置 */
     }
 
     .fade-out {
