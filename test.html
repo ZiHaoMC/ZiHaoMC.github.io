@@ -305,6 +305,12 @@
 
     .news-update-list p {
       margin-bottom: 10px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%; /* 确保宽度一致 */
+      white-space: nowrap; /* 避免换行 */
+      text-align: center; /* 居中对齐 */
     }
 
     @keyframes fadeOut {
@@ -335,12 +341,11 @@
 
     .fade-out-in {
       position: relative;
+      width: 100%;
     }
 
     .news-text {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
       width: 100%; /* 确保宽度一致 */
       text-align: center; /* 居中对齐 */
     }
@@ -476,9 +481,6 @@
       // 在淡出动画结束后，显示替换文本并添加淡入动画
       newsUpdateText.addEventListener('animationend', function () {
         replacementText.style.opacity = '1'; // 确保替换文本可见
-        replacementText.style.position = 'absolute';
-        replacementText.style.left = newsUpdateText.style.left;
-        replacementText.style.top = newsUpdateText.style.top;
         replacementText.classList.add('fade-in');
       }, { once: true });
     });
